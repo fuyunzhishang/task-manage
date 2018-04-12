@@ -1,34 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-// import Login from '@/view/login/Login'
-// import index from '@/views/index/index'
+//import {index as main} from '../components/main/index.vue';
+import HelloWorld from '../components/HelloWorld.vue';
+import main from '../components/main/main.vue';
+import overview  from '../view/overview/overview.vue';
+import home from '../view/overview/home.vue';
+import cal from '../view/overview/cal.vue';
+import center from '../view/overview/center.vue';
+import addRemark from '../view/overview/addRemark.vue';
 
 Vue.use(Router)
 
 export default new Router({
-  // routes: [
-  //   // {
-  //   //   path: '/',
-  //   //   name: 'HelloWorld',
-  //   //   component: HelloWorld
-  //   // }
-  //   // {
-  //   //   path: '/',
-  //   //   name: 'Login',
-  //   //   component: Login
-  //   // }
-  //   {
-  //     path: '/',
-  //     name: 'index',
-  //     component: index
-  //   }
-  // ]
   routes: [
     {
       path: '/',
-      component: () => import('@/components/main'),
-      // component: () => import ('@/view/login/Login'),
+      //component: () => import('@/components/main'),
+      component: main,
       redirect: {
         name: 'overview'
       },
@@ -39,13 +27,15 @@ export default new Router({
           redirect: {
             name: 'overview_home'
           },
-          component: () => import('@/view/overview'),
+          //component: () => import('@/view/overview'),
+          component: overview,
           children: [
             {
               path: 'home',
               name: 'overview_home',
               meta: {},
-              component: () => import('@/view/overview/home')
+              //component: () => import('@/view/overview/home')
+               component: home
             },
             {
               path: 'cal',
@@ -53,7 +43,8 @@ export default new Router({
               meta: {
                 requiresAuth: true
               },
-              component: () => import('@/view/overview/cal')
+              //component: () => import('@/view/overview/cal')
+              component: cal
             },
             {
               path: 'center',
@@ -61,7 +52,8 @@ export default new Router({
               meta: {
                 requiresAuth: true
               },
-              component: () => import('@/view/overview/center')
+              //component: () => import('@/view/overview/center')
+              component: center
             },
             {
               path: 'addRemark',
@@ -69,7 +61,8 @@ export default new Router({
               meta: {
                 requiresAuth: true
               },
-              component: () => import('@/view/overview/addRemark')
+              //component: () => import('@/view/overview/addRemark')
+              component: addRemark
             }
           ]
         }

@@ -18,7 +18,7 @@
                     <div class="td-operation">
                         <!-- <span class="td-detail">详情</span> -->
                         <!-- <span class="td-del">删除</span> -->
-                        <el-button type="text" class="td-detail">详情</el-button>
+                        <el-button type="text" class="td-detail" @click="getDetail(item.id)">详情</el-button>
                         <el-button @click="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
@@ -35,6 +35,8 @@
 
 <script>
 import axios from 'axios'
+import eventBus from '../../eventBus'
+
 export default {
   data () {
     return {
@@ -51,7 +53,7 @@ export default {
       this.$router.push('/overview/addRemark')
     },
     getList () {
-      axios.get('http://localhost:1337/task').then(res => {
+      axios.get('/task').then(res => {
         this.todoList = res.data
       })
     },
@@ -61,12 +63,19 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(res => {
-        axios.delete('http://localhost:1337/task/' + taskId).then(res => {
+        axios.delete('/task/' + taskId).then(res => {
+          this.getList()
           this.$message({
             type: 'success',
             message: '删除成功'
           })
         })
+      })
+    },
+    getDetail (taskId) {
+      axios.get('/task/' + taskId).then(res => {
+        eventBus.$emit('showTaskDetail', res.data)
+        this.$router.push('/overview/addRemark')
       })
     }
   }

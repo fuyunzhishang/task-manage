@@ -1,9 +1,9 @@
 <template>
   <div id="remark-warp">
-    <mt-field label="标题" placeholder="请输入任务标题" v-model="title"></mt-field>
-    <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="remindTime"></mt-field>
-    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="remindTime"></mt-datetime-picker>
-    <mt-field label="任务内容" placeholder="内容" type="textarea" rows="4" v-model="content"></mt-field>
+    <mt-field label="标题" placeholder="请输入任务标题" v-model="task.title"></mt-field>
+    <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="task.remindTime"></mt-field>
+    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="task.remindTime"></mt-datetime-picker>
+    <mt-field label="任务内容" placeholder="内容" type="textarea" rows="4" v-model="task.content"></mt-field>
     <div @click="saveRemark" class="create-todos">
             <span class="el-icon-circle-check-outline"></span>
             <span>保存</span>
@@ -14,16 +14,24 @@
 <script>
 import axios from 'axios'
 import { Toast } from 'mint-ui'
+import eventBus from '../../eventBus'
+
 export default {
   data () {
     return {
-      title: '',
-      createTime: '',
-      remindTime: '',
-      content: ''
+      task: {}
     }
   },
   components: {
+  },
+  mounted () {
+    let _this = this
+    eventBus.$on('showTaskDetail', (data) => {
+      console.log(data)
+      console.log(_this.task)
+      _this.task = data
+      console.log(_this.task)
+    })
   },
   methods: {
     openPicker () {
@@ -33,13 +41,8 @@ export default {
       this.remindTime = time.toLocaleString()
     },
     saveRemark () {
-      const data = {
-        title: this.title,
-        remindTime: this.remindTime,
-        content: this.content
-      }
       // const data = JSON.stringify(params)
-      axios.post('http://localhost:1337/task', data).then(res => {
+      axios.post('http://localhost:1337/task', this.task).then(res => {
         this.$message({
           type: 'success',
           message: '添加成功!'
