@@ -35,7 +35,7 @@ export default new Router({
               name: 'overview_home',
               meta: {},
               //component: () => import('@/view/overview/home')
-               component: home
+              component: home
             },
             {
               path: 'cal',
