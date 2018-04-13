@@ -22,6 +22,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      createTime: ''
     }
   },
   components: {
@@ -33,8 +34,10 @@ export default {
   computed: {
     ...mapState({
       task: state => state.task
-    })
-    this.createTime = util.dateFormat(new Date());
+    }),
+    convertTime() {
+      this.createTime = util.dateFormat(new Date());
+    }
   },
   methods: {
     openPicker () {
