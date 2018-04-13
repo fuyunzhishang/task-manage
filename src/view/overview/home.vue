@@ -7,18 +7,15 @@
         <div class="search-area">
             <el-input v-model="searchKey" placeholder="请输入关键字"></el-input>
             <span class="search el-icon-search"></span>
-            <!-- <div @click="search" class="search el-icon-search">搜索</div> -->
         </div>
-
         <div class="todoList">
             <div v-if="todoList.length > 0">
                 <li v-for="(item, index) in todoList" :key="index">
-                    <div class="td-title">{{item.title}}</div>
-                    <div class="td-title">{{item.content}}</div>
+                    <div class="td-title">{{ item.title || '无' }}</div>
+                    <div class="td-content" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
+                    <div class="td-content" v-else>{{ item.content || '无' }}</div>
                     <div class="td-operation">
-                        <!-- <span class="td-detail">详情</span> -->
-                        <!-- <span class="td-del">删除</span> -->
-                        <el-button type="text" class="td-detail" @click="getDetail(item.id)">详情</el-button>
+                        <el-button type="text" class="td-detail" @click="viewTaskDetail(item.id)">详情</el-button>
                         <el-button @click="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
@@ -72,8 +69,11 @@ export default {
         })
       })
     },
+    /**
+     * 查看备忘录详情
+     */
     getDetail (taskId) {
-      axios.get('/task/' + taskId).then(res => {
+      axios.get(`/task/${taskId}`).then(res => {
         eventBus.$emit('showTaskDetail', res.data)
         this.$router.push('/overview/addRemark')
       })
@@ -86,6 +86,7 @@ export default {
 @import '../../style/css/common.css';
 .todoList{
     margin-top: 1rem;
+    /* display: flex; */
 }
 .todoList li {
     display: flex;
@@ -95,9 +96,16 @@ export default {
 }
 .todoList li div {
     display: inline-block;
+    text-align: left;
 }
 .todoList li div span {
     color: #409EFF;
+}
+.todoList li div.td-title {
+    width: 15%;
+}
+.todoList li div.td-content {
+    width: 45%;
 }
 .create-todos {
     position: fixed;
@@ -117,7 +125,7 @@ export default {
     align-self: flex-end;
    position: absolute;
    top: 7px;
-   left: 22rem;
+   right: 1rem;
 }
 .search-area {
     margin-top: 1rem;
