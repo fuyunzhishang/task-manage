@@ -15,7 +15,7 @@
                     <div class="td-content" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
                     <div class="td-content" v-else>{{ item.content || '无' }}</div>
                     <div class="td-operation">
-                        <el-button type="text" class="td-detail" @click="viewTaskDetail(item.id)">详情</el-button>
+                        <el-button type="text" class="td-detail" @click="getDetail(item.id)">详情</el-button>
                         <el-button @click="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>

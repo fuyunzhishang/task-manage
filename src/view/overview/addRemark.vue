@@ -37,10 +37,12 @@ export default {
   mounted () {
     let _this = this
     eventBus.$on('showTaskDetail', (data) => {
-      console.log('test detail');
-      console.log(data)
+      console.log('test');
+      console.log(data);
+      console.log('before');
       console.log(_this.task)
       _this.task = data
+      console.log('after');
       console.log(_this.task)
     })
     this.createTime = util.dateFormat(new Date());
