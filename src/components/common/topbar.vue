@@ -13,7 +13,20 @@
                 <span>{{username}}，你好</span>
             </div>
             <div class="menu-list">
-
+                <ul>
+                    <li class="first-menu" v-for="item in menu" :key="item.value">
+                        <router-link to="#">
+                            {{ item.title }}
+                        </router-link>
+                        <ul v-if="item.children">
+                            <li class="second-menu" v-for="child in item.children" :key="child.value">
+                                <router-link to="#">
+                                    {{ child.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -24,7 +37,43 @@ export default {
     data() {
         return {
             isShowMenu: false,
-            username: ''
+            username: '',
+            menu: [
+                {
+                    title: '备忘录管理',
+                    value: 0,
+                    children: [
+                        {
+                            title: '工作',
+                            value: 0
+                        },
+                        {
+                            title: '学习',
+                            value: 1
+                        },
+                        {
+                            title: '生活',
+                            value: 2
+                        },
+                        {
+                            title: '其他',
+                            value: 3
+                        }
+                    ]
+                },
+                {
+                    title: '相册管理',
+                    value: 1
+                },
+                {
+                    title: '约会管理',
+                    value: 2
+                },
+                {
+                    title: '计算器',
+                    value: 3
+                }
+            ]
         }
     }
 }

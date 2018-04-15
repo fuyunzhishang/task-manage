@@ -37,54 +37,58 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   data () {
-    return {
-      searched: false,
-      searchKey: '',
-      todoList: []
-    }
+        return {
+            searched: false,
+            searchKey: '',
+            todoList: []
+        }
   },
   created () {
-    this.getList()
+        this.getList()
   },
   computed: {
+    ...mapState({
+        taskStatus: state => state.taskStatus
+    })
   },
-  methods: {
-      func:()=>{},
-    ...mapMutations([
-      'updateTask'
-    ]),
+    methods: {
+        func:()=>{},
+        ...mapMutations([
+            'updateTask'
+        ]),
     addRemark: function () {
-      this.$router.push('/overview/addRemark')
+        this.$router.push('/overview/addRemark')
     },
     getList () {
-      axios.get('/task').then(res => {
-        this.todoList = res.data
-      })
+        // this.taskStatus = 1;
+        axios.get('/task').then(res => {
+            this.todoList = res.data
+        })
     },
     deleteTask (taskId) {
-      this.$confirm('删除本条备忘录, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(res => {
-        axios.delete('/task/' + taskId).then(res => {
-          this.getList()
-          this.$message({
-            type: 'success',
-            message: '删除成功'
-          })
+        this.$confirm('删除本条备忘录, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(res => {
+            axios.delete('/task/' + taskId).then(res => {
+                this.getList()
+                this.$message({
+                    type: 'success',
+                    message: '删除成功'
+                })
+            })
         })
-      })
     },
     /**
      * 查看备忘录详情
      */
     getDetail (taskId) {
-      axios.get('/task/' + taskId).then(res => {
-        // eventBus.$emit('showTaskDetail', res.data)
-        this.updateTask(res.data)
-        this.$router.push('/overview/addRemark')
-      })
+        axios.get('/task/' + taskId).then(res => {
+            // eventBus.$emit('showTaskDetail', res.data)
+            this.updateTask(res.data)
+            this.$router.push('/overview/addRemark')
+        })
     }
   }
 }

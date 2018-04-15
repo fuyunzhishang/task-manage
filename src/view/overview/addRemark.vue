@@ -18,6 +18,7 @@ import axios from 'axios'
 import { Toast } from 'mint-ui'
 import eventBus from '../../eventBus'
 import { mapState, mapMutations, mapActions } from 'vuex'
+import util from '../../util/util'
 
 export default {
   data () {
@@ -28,16 +29,21 @@ export default {
   components: {
   },
   created() {
+    if (this.taskStatus === 0) {
+      this.task = {}
+      this.createTime = util.dateFormat(new Date());
+    }
   },
   mounted () {
   },
   computed: {
     ...mapState({
-      task: state => state.task
+      task: state => state.task,
+      taskStatus: state => state.taskStatus
     }),
-    convertTime() {
-      this.createTime = util.dateFormat(new Date());
-    }
+    // convertTime() {
+    //   this.createTime = util.dateFormat(new Date());
+    // }
   },
   methods: {
     openPicker () {
