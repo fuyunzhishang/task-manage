@@ -8,6 +8,7 @@ import home from '../view/overview/home.vue';
 import cal from '../view/overview/cal.vue';
 import center from '../view/overview/center.vue';
 import addRemark from '../view/overview/addRemark.vue';
+import albertManage from '../view/overview/albertManage.vue';
 
 Vue.use(Router)
 
@@ -63,6 +64,14 @@ export default new Router({
               },
               //component: () => import('@/view/overview/addRemark')
               component: addRemark
+            },
+            {
+              path: 'albertManage',
+              name: 'albert_manage',
+              meta: {
+                requiresAuth: true
+              },
+              component: albertManage
             }
           ]
         }

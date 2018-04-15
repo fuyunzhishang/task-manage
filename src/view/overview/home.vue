@@ -10,12 +10,12 @@
         </div>
         <div class="todoList">
             <div v-if="todoList.length > 0">
-                <li v-for="(item, index) in todoList" :key="index">
+                <li v-for="(item, index) in todoList" :key="index" @click="getDetail(item.id, 1)">
                     <div class="td-title">{{ item.title || '无' }}</div>
                     <div class="td-content" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
                     <div class="td-content" v-else>{{ item.content || '无' }}</div>
                     <div class="td-operation">
-                        <el-button type="text" class="td-detail" @click="getDetail(item.id)">详情</el-button>
+                        <el-button type="text" class="td-detail" @click.stop="getDetail(item.id, 2)">编辑</el-button>
                         <el-button @click="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
@@ -54,13 +54,15 @@ export default {
     methods: {
         func:()=>{},
         ...mapMutations([
-            'updateTask'
+            'updateTask',
+            'showCreateTime'
         ]),
     addRemark: function () {
         this.$router.push('/overview/addRemark')
+        this.showCreateTime(0);
+        this.updateTask({})
     },
     getList () {
-        // this.taskStatus = 1;
         axios.get('/task').then(res => {
             this.todoList = res.data
         })
@@ -83,9 +85,9 @@ export default {
     /**
      * 查看备忘录详情
      */
-    getDetail (taskId) {
+    getDetail (taskId, status) {
+        this.showCreateTime(status)
         axios.get('/task/' + taskId).then(res => {
-            // eventBus.$emit('showTaskDetail', res.data)
             this.updateTask(res.data)
             this.$router.push('/overview/addRemark')
         })

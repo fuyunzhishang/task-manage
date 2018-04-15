@@ -14,7 +14,7 @@
             </div>
             <div class="menu-list">
                 <ul>
-                    <li class="first-menu" v-for="item in menu" :key="item.value">
+                    <li class="first-menu" v-for="item in menu" :key="item.value" @click="firstNav(item.value)">
                         <router-link to="#">
                             {{ item.title }}
                         </router-link>
@@ -74,6 +74,13 @@ export default {
                     value: 3
                 }
             ]
+        }
+    },
+    methods: {
+        firstNav(value) {
+            if (value === 1) {
+                this.$router.push('/overview/albertManage')
+            }
         }
     }
 }

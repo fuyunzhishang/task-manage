@@ -24,6 +24,13 @@ module.exports = {
         pathRewrite: {
           '^/task': ''  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
       }
+      },
+      '/albert': {
+        target: 'http://localhost:1337/albert',
+        changeOrigin: false,//true允许跨域
+        pathRewrite: {
+          '^/albert': ''
+      }
       }
     },
 

@@ -2,7 +2,7 @@
   <div id="remark-warp" class="remark-wrap">
     <div class="page-header">
       <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
-      <el-button type="text" @click="saveRemark"><span class="icon-check"></span></el-button>
+      <el-button type="text" v-show="taskStatus === 2"  @click="saveRemark"><span class="icon-check"></span></el-button>
     </div>
     <!-- 创建时间：如果是新建备忘录，创建时间则为当前时间；若为详情，则创建时间应为 task.createTime -->
     <mt-field label="创建时间" v-model="createTime"></mt-field>
@@ -28,24 +28,24 @@ export default {
   },
   components: {
   },
-  created() {
-    if (this.taskStatus === 0) {
-      this.task = {}
-      this.createTime = util.dateFormat(new Date());
+  watch: {
+    taskStatus(newVal) {
+      console.log(newVal)
     }
   },
   mounted () {
   },
+
   computed: {
     ...mapState({
       task: state => state.task,
       taskStatus: state => state.taskStatus
-    }),
-    // convertTime() {
-    //   this.createTime = util.dateFormat(new Date());
-    // }
+    })
   },
   methods: {
+    ...mapMutations([
+      'updateTask',
+    ]),
     openPicker () {
       this.$refs.picker.open()
     },
