@@ -12,25 +12,32 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-          target: 'http://127.0.0.1:3000/api/',
-          changeOrigin: true,//true允许跨域
-          pathRewrite: {
-              '^/api': ''  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
-          }
+        target: 'http://127.0.0.1:3000/api/',
+        changeOrigin: true, //true允许跨域
+        pathRewrite: {
+          '^/api': '' //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+        }
       },
       '/task': {
         target: 'http://localhost:1337/task',
-        changeOrigin: false,//true允许跨域
+        changeOrigin: false, //true允许跨域
         pathRewrite: {
-          '^/task': ''  //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
-      }
+          '^/task': '' //需要rewrite重写的, 如果在服务器端做了处理则可以不要这段
+        }
       },
       '/albert': {
         target: 'http://localhost:1337/albert',
-        changeOrigin: false,//true允许跨域
+        changeOrigin: false, //true允许跨域
         pathRewrite: {
           '^/albert': ''
-      }
+        }
+      },
+      '/upload': {
+        target: 'http://localhost:1337/upload',
+        changeOrigin: false, //true允许跨域
+        pathRewrite: {
+          '^/upload': ''
+        }
       }
     },
 

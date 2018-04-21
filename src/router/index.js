@@ -9,6 +9,7 @@ import cal from '../view/overview/cal.vue';
 import center from '../view/overview/center.vue';
 import addRemark from '../view/overview/addRemark.vue';
 import albertManage from '../view/overview/albertManage.vue';
+import albertList from '../view/overview/albertList.vue';
 
 Vue.use(Router)
 
@@ -68,10 +69,12 @@ export default new Router({
             {
               path: 'albertManage',
               name: 'albert_manage',
-              meta: {
-                requiresAuth: true
-              },
               component: albertManage
+            },
+            {
+              path: 'albertList',
+              name: 'albert_manage',
+              component: albertList
             }
           ]
         }

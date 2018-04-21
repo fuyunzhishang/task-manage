@@ -6,7 +6,7 @@
     </div>
     <mt-field label="创建时间" v-model="createTime"></mt-field>
     <mt-field label="标题" placeholder="请输入任务标题" v-model="task.title"></mt-field>
-    <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="task.remindTime"></mt-field>
+    <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="remindTime"></mt-field>
     <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="task.remindTime"></mt-datetime-picker>
     <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="task.content"></mt-field>
   </div>
@@ -22,7 +22,8 @@ import util from '../../util/util'
 export default {
   data () {
     return {
-      createTime: ''
+      createTime: '',
+      remindTime: ''
     }
   },
   components: {
@@ -33,11 +34,15 @@ export default {
     }
   },
   mounted () {
-    if (this.taskStatus === 0) {
-      this.createTime = util.dateFormat(new Date());
-    } else {
-      this.task.remindTime = util.dateFormat(new Date(this.task.remindTime));
-      this.createTime = util.dateFormat(new Date(this.task.createdAt));
+    switch (this.taskStatus) {
+      case 0:
+        this.createTime = util.dateFormat(new Date())
+        break;
+      case 2:
+        this.createTime = util.dateFormat(new Date(this.task.createdAt))
+        this.remindTime = util.dateFormat(new Date(this.task.remindTime))
+      default:
+        break;
     }
   },
   computed: {
@@ -57,7 +62,7 @@ export default {
      * 选则日期
      */
     handleConfirm (time) {
-      this.task.remindTime = util.dateFormat(time)
+      this.remindTime = util.dateFormat(new Date(time))
     },
     /**
      * 新建备忘录

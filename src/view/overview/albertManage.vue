@@ -10,7 +10,10 @@
 <!-- tab-container -->
 <mt-tab-container v-model="selected">
   <mt-tab-container-item :id="1">
-    <mt-cell v-for="(n, idx) in imageList.ordinary" :title="n.title" :key="idx" />
+    <mt-cell v-for="(n, idx) in imageList.ordinary" :title="n.title" :key="idx" @click.native="showList">
+        <span class="albert-" @click="editAlbert(n)">编辑</span>
+        <span @click="delAlbert">删除</span>
+   </mt-cell>
   </mt-tab-container-item>
   <mt-tab-container-item :id="2">
     <mt-cell v-for="(n, idx) in imageList.multi" :title="n.title" :key="idx" />
@@ -53,7 +56,16 @@ export default{
   methods: {
     ...mapActions([
       'getImageList'
-    ])
+    ]),
+    editAlbert(albert)  {
+        console.log(albert)
+    },
+    delAlbert(albert) {
+    },
+    showList() {
+      console.log('list ss')
+      this.$router.push('/overview/albertList')
+    }
   }
 }
 </script>
