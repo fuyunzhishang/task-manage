@@ -2,7 +2,7 @@
   <div id="remark-warp" class="remark-wrap">
     <div class="page-header">
       <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
-      <el-button type="text" v-show="taskStatus === 2"  @click="saveRemark"><span class="icon-check"></span></el-button>
+      <el-button type="text" v-show="taskStatus === 2"  @click="updateRemark"><span class="icon-check"></span></el-button>
     </div>
     <!-- 创建时间：如果是新建备忘录，创建时间则为当前时间；若为详情，则创建时间应为 task.createTime -->
     <mt-field label="创建时间" v-model="createTime"></mt-field>
@@ -64,6 +64,15 @@ export default {
         this.$message({
           type: 'success',
           message: '添加成功!'
+        });
+        this.$router.push({ name: 'overview_home'});
+      })
+    },
+    updateRemark() {
+      axios.put('/task/' +  this.task.id, this.task).then(res => {
+        this.$message({
+          type: 'success',
+          message: '编辑成功!'
         });
         this.$router.push({ name: 'overview_home'});
       })
