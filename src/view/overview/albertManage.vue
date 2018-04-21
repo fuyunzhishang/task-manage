@@ -10,16 +10,16 @@
 <!-- tab-container -->
 <mt-tab-container v-model="selected">
   <mt-tab-container-item :id="1">
-    <mt-cell v-for="n in imageList['5']" :title="n.title" />
+    <mt-cell v-for="(n, idx) in imageList.ordinary" :title="n.title" :key="idx" />
   </mt-tab-container-item>
   <mt-tab-container-item :id="2">
-    <mt-cell v-for="n in imageList['6']" :title="n.title" />
+    <mt-cell v-for="(n, idx) in imageList.multi" :title="n.title" :key="idx" />
   </mt-tab-container-item>
   <mt-tab-container-item :id="3">
-    <mt-cell v-for="n in imageList['7']" :title="n.title" />
+    <mt-cell v-for="(n, idx) in imageList.tourism" :title="n.title" :key="idx" />
   </mt-tab-container-item>
   <mt-tab-container-item :id="4">
-    <mt-cell v-for="n in imageList['8']" :title="n.title" />
+    <mt-cell v-for="(n, idx) in imageList.family" :title="n.title" :key="idx" />
   </mt-tab-container-item>
 </mt-tab-container>
 </div>

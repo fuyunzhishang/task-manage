@@ -8,10 +8,10 @@ const store = new Vuex.Store({
     task: {},
     taskStatus: 0,  // 0 - 新建，1 - 详情，2 - 编辑,
     imageList: {
-      5: [],
-      6: [],
-      7: [],
-      8: []
+      ordinary: [],
+      multi: [],
+      tourism: [],
+      family: []
     } //相册列表
   },
   mutations: {
@@ -31,13 +31,13 @@ const store = new Vuex.Store({
         let list = res.data;
         list.forEach(item => {
           if (item.category === 5) {
-            store.state.imageList['5'].push(item);
+            store.state.imageList.ordinary.push(item);
           } else if (item.category === 6) {
-            store.state.imageList['6'].push(item);
+            store.state.imageList.multi.push(item);
           } else if (item.category === 7) {
-            store.state.imageList['7'].push(item);
+            store.state.imageList.tourism.push(item);
           } else if (item.category === 8) {
-            store.state.imageList['8'].push(item);
+            store.state.imageList.family.push(item);
           }
         })
       })

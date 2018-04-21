@@ -13,20 +13,18 @@
                 <span>{{username}}，你好</span>
             </div>
             <div class="menu-list">
-                <ul>
-                    <li class="first-menu" v-for="item in menu" :key="item.value" @click="firstNav(item.value)">
-                        <router-link to="#">
-                            {{ item.title }}
-                        </router-link>
-                        <ul v-if="item.children">
-                            <li class="second-menu" v-for="child in item.children" :key="child.value">
-                                <router-link to="#">
-                                    {{ child.title }}
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <div class="first-menu" v-for="item in menu" :key="item.value" @click="firstNav(item.value)">
+                    <router-link to="">
+                        {{ item.title }}
+                    </router-link>
+                    <ul v-if="item.children">
+                        <li class="second-menu" v-for="child in item.children" :key="child.value">
+                            <router-link to="#">
+                                {{ child.title }}
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -41,6 +39,7 @@ export default {
             menu: [
                 {
                     title: '备忘录管理',
+                    routerName: '/overview_home',
                     value: 0,
                     children: [
                         {
@@ -63,14 +62,17 @@ export default {
                 },
                 {
                     title: '相册管理',
+                    routerName: '/albertManage',
                     value: 1
                 },
                 {
                     title: '约会管理',
+                    routerName: '/dateManage',
                     value: 2
                 },
                 {
                     title: '计算器',
+                    routerName: '/cal',
                     value: 3
                 }
             ]
@@ -79,7 +81,8 @@ export default {
     methods: {
         firstNav(value) {
             if (value === 1) {
-                this.$router.push('/overview/albertManage')
+                this.$router.push('/overview/albertManage');
+                this.isShowMenu = false;
             }
         }
     }
@@ -130,5 +133,8 @@ header >>> .el-button--small {
     width: 80px;
     height: 80px;
     border-radius: 50%;
+}
+.first-menu {
+    background-color: #cccccc;
 }
 </style>

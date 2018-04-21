@@ -2,9 +2,8 @@
   <div id="remark-warp" class="remark-wrap">
     <div class="page-header">
       <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
-      <el-button type="text" v-show="taskStatus === 2"  @click="updateRemark"><span class="icon-check"></span></el-button>
+      <el-button type="text" v-show="taskStatus === 2 || taskStatus === 0"  @click="saveRemark"><span class="icon-check"></span></el-button>
     </div>
-    <!-- 创建时间：如果是新建备忘录，创建时间则为当前时间；若为详情，则创建时间应为 task.createTime -->
     <mt-field label="创建时间" v-model="createTime"></mt-field>
     <mt-field label="标题" placeholder="请输入任务标题" v-model="task.title"></mt-field>
     <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="task.remindTime"></mt-field>
@@ -34,8 +33,13 @@ export default {
     }
   },
   mounted () {
+    if (this.taskStatus === 0) {
+      this.createTime = util.dateFormat(new Date());
+    } else {
+      this.task.remindTime = util.dateFormat(new Date(this.task.remindTime));
+      this.createTime = util.dateFormat(new Date(this.task.createdAt));
+    }
   },
-
   computed: {
     ...mapState({
       task: state => state.task,
