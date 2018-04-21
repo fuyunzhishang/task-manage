@@ -11,7 +11,8 @@
         <div class="todoList">
             <div v-if="todoList.length > 0">
                 <li v-for="(item, index) in todoList" :key="index" @click="getDetail(item.id, 1)">
-                    <div class="td-title">{{ item.title || '无' }}</div>
+                    <div class="td-title" v-if="item.title && item.title.length > 3">{{ item.title.slice(0, 2) }}...</div>
+                    <div class="td-title" v-else>{{ item.title || '无' }}</div>
                     <div class="td-content" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
                     <div class="td-content" v-else>{{ item.content || '无' }}</div>
                     <div class="td-operation">
@@ -100,7 +101,6 @@ export default {
 @import '../../style/css/common.css';
 .todoList{
     margin-top: 1rem;
-    /* display: flex; */
 }
 .todoList li {
     display: flex;
