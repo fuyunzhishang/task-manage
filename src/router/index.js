@@ -35,14 +35,12 @@ export default new Router({
           redirect: {
             name: 'overview_home'
           },
-          //component: () => import('@/view/overview'),
           component: overview,
           children: [
             {
               path: 'home',
               name: 'overview_home',
               meta: {},
-              //component: () => import('@/view/overview/home')
               component: home
             },
             {
@@ -51,25 +49,39 @@ export default new Router({
               meta: {
                 requiresAuth: true
               },
-              //component: () => import('@/view/overview/cal')
               component: cal
             },
             {
               path: 'center',
               name: 'overview_center',
-              meta: {
-                requiresAuth: true
-              },
-              //component: () => import('@/view/overview/center')
-              component: center
+              component: center,
             },
+            {
+                path: 'aboutUs',
+                name: 'about_us',
+                component: aboutUs
+             },
+             {
+                path: 'showUserInfo',
+                name: 'show_user_info',
+                component: showUserInfo
+              },
+              {
+                path: 'setting',
+                name: 'setting',
+                component: setting
+              },
+              {
+                path: 'contact',
+                name: 'contact',
+                component: contact
+              },
             {
               path: 'addRemark',
               name: 'add_remark',
               meta: {
                 requiresAuth: true
               },
-              //component: () => import('@/view/overview/addRemark')
               component: addRemark
             },
             {
@@ -86,36 +98,6 @@ export default new Router({
               path: 'dateManage',
               name: 'date_manage',
               component: dateManage
-            }
-          ]
-        },
-        {
-          path: '/center',
-          name: 'center',
-          redirect: {
-            name: 'overview_center'
-          },
-          component: index,
-          children: [
-            {
-              path: '/showUserInfo',
-              name: 'show_user_info',
-              component: showUserInfo
-            },
-            {
-              path: '/setting',
-              name: 'setting',
-              component: setting
-            },
-            {
-              path: '/aboutUs',
-              name: 'about_us',
-              component: aboutUs
-            },
-            {
-              path: '/contact',
-              name: 'contact',
-              component: contact
             }
           ]
         }
