@@ -10,6 +10,7 @@ import center from '../view/overview/center.vue';
 import addRemark from '../view/overview/addRemark.vue';
 import albertManage from '../view/overview/albertManage.vue';
 import albertList from '../view/overview/albertList.vue';
+import dateManage from '../view/overview/dateManage.vue';
 
 Vue.use(Router)
 
@@ -75,6 +76,11 @@ export default new Router({
               path: 'albertList',
               name: 'albert_manage',
               component: albertList
+            },
+            {
+              path: 'dateManage',
+              name: 'date_manage',
+              component: dateManage
             }
           ]
         }

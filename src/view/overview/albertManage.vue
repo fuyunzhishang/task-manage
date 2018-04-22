@@ -10,9 +10,11 @@
 <!-- tab-container -->
 <mt-tab-container v-model="selected">
   <mt-tab-container-item :id="1">
-    <mt-cell v-for="(n, idx) in imageList.ordinary" :title="n.title" :key="idx" @click.native="showList">
-        <span class="albert-" @click="editAlbert(n)">编辑</span>
-        <span @click="delAlbert">删除</span>
+    <mt-cell v-for="(n, idx) in imageList.ordinary" :title="n.title" :key="idx">
+      <el-button type="text" class="albert-edit" @click="editAlbert(n)">编辑</el-button>
+      <el-button type="text" class="albert-del" @click="delAlbert">删除</el-button>
+        <!-- <span class="albert-edit" @click="editAlbert(n)">编辑</span>
+        <span class="albert-del" @click="delAlbert">删除</span> -->
    </mt-cell>
   </mt-tab-container-item>
   <mt-tab-container-item :id="2">
@@ -58,13 +60,13 @@ export default{
       'getImageList'
     ]),
     editAlbert(albert)  {
-        console.log(albert)
+      console.log(albert)
+      this.$router.push('/overview/albertList');
     },
     delAlbert(albert) {
     },
     showList() {
-      console.log('list ss')
-      this.$router.push('/overview/albertList')
+      console.log('list ss');
     }
   }
 }
@@ -72,5 +74,8 @@ export default{
 <style>
 .mint-tab-container {
   margin-top: 16px;
+}
+.albert-edit span, .albert-del span {
+  color: #409EFF;
 }
 </style>
