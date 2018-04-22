@@ -83,7 +83,20 @@ export default new Router({
               component: dateManage
             }
           ]
-        }
+        },
+        // {
+        //   path: 'center',
+        //   name: 'center',
+        //   redirect: {
+        //     name: 'overview_center'
+        //   },
+        //   component: center,
+        //   children: [
+        //     {
+
+        //     }
+        //   ]
+        // }
       ]
     }
   ]
