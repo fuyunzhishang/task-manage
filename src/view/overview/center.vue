@@ -4,16 +4,16 @@
             <img class="avator" src="../../assets/images/avator.jpg" alt="头像">
             <span>{{ username }}</span>
         </div>
-        <mt-cell title="个人资料" is-link to="/showUserInfo">
+        <mt-cell title="个人资料" is-link :to="{ name: 'show_user_info' }">
             <img slot="icon" src="../../../static/icon/icon_user_info.png" width="24" height="24">
         </mt-cell>
-        <mt-cell title="设置" is-link to="/setting">
+        <mt-cell title="设置" is-link :to="{ name: 'setting' }">
             <img slot="icon" src="../../../static/icon/icon_setting.png" width="24" height="24">
         </mt-cell>
-        <mt-cell title="关于" is-link to="/about">
+        <mt-cell title="关于" is-link :to="{ name: 'about_us' }">
             <img slot="icon" src="../../../static/icon/icon_about.png" width="24" height="24">
         </mt-cell>
-        <mt-cell title="联系我们" is-link to="/contact">
+        <mt-cell title="联系我们" is-link :to="{ name: 'contact' }">
             <img slot="icon" src="../../../static/icon/icon_contact.png" width="24" height="24">
         </mt-cell>
     </div>

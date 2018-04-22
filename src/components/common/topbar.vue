@@ -38,7 +38,7 @@ export default {
     data() {
         return {
             isShowMenu: false,
-            username: '',
+            username: '略略略',
             menu: [
                 {
                     title: '备忘录管理',
