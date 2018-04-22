@@ -13,18 +13,21 @@
                 <span>{{username}}，你好</span>
             </div>
             <div class="menu-list">
-                <div class="first-menu" v-for="item in menu" :key="item.value" @click="firstNav(item.value)">
-                    <router-link to="">
-                        {{ item.title }}
-                    </router-link>
-                    <ul v-if="item.children">
-                        <li class="second-menu" v-for="child in item.children" :key="child.value">
-                            <router-link to="#">
-                                {{ child.title }}
-                            </router-link>
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li v-for="item in menu" :key="item.value" @click="isShowMenu = false">
+                        <router-link class="first-menu" :to="{ path: item.routerName }">
+                            <img class="icon" :src="item.imgUrl"></img>
+                            <span>{{ item.title }}</span>
+                        </router-link>
+                        <ul v-if="item.children">
+                            <li class="second-menu" v-for="child in item.children" :key="child.value">
+                                <router-link to="#">
+                                    {{ child.title }}
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -39,7 +42,8 @@ export default {
             menu: [
                 {
                     title: '备忘录管理',
-                    routerName: '/overview_home',
+                    imgUrl: '../../../static/icon/icon_task.png',
+                    routerName: '/overview/home',
                     value: 0,
                     children: [
                         {
@@ -62,29 +66,54 @@ export default {
                 },
                 {
                     title: '相册管理',
-                    routerName: '/albertManage',
-                    value: 1
+                    imgUrl: '../../../static/icon/icon_albert.png',
+                    routerName: '/overview/albertManage',
+                    value: 1,
+                    children: [
+                        {
+                            title: '普通',
+                            value: 0
+                        },
+                        {
+                            title: '多人',
+                            value: 1
+                        },
+                        {
+                            title: '旅游',
+                            value: 2
+                        },
+                        {
+                            title: '亲子',
+                            value: 3
+                        }
+                    ]
                 },
                 {
                     title: '约会管理',
-                    routerName: '/dateManage',
+                    imgUrl: '../../../static/icon/icon_dating.png',
+                    routerName: '/overview/dateManage',
                     value: 2
                 },
                 {
                     title: '计算器',
-                    routerName: '/cal',
+                    imgUrl: '../../../static/icon/icon_cal.png',
+                    routerName: '/overview/cal',
                     value: 3
+                },
+                {
+                    title: '退出登录',
+                    value: 4
                 }
             ]
         }
     },
     methods: {
-        firstNav(value) {
-            if (value === 1) {
-                this.$router.push('/overview/albertManage');
-                this.isShowMenu = false;
-            }
-        }
+        // firstNav(value) {
+        //     if (value === 1) {
+        //         this.$router.push('/overview/albertManage');
+        //         this.isShowMenu = false;
+        //     }
+        // }
     }
 }
 </script>
@@ -134,7 +163,25 @@ header >>> .el-button--small {
     height: 80px;
     border-radius: 50%;
 }
+.menu-list ul li {
+    padding: 0.6rem 0 0 0.2rem;
+    background-color: #fcfcfc;
+}
 .first-menu {
-    background-color: #cccccc;
+    color: #444444;
+}
+.first-menu > span {
+    position: relative;
+    top: -0.4rem;
+}
+.menu-list ul li ul li {
+    display: flex;
+    height: 2rem;
+    padding-left: 2rem;
+    background-color: #ffffff;
+}
+.icon {
+    width: 1.6rem;
+    height: auto;
 }
 </style>

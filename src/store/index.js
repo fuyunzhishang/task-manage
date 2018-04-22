@@ -8,10 +8,10 @@ const store = new Vuex.Store({
     task: {},
     taskStatus: 0,  // 0 - 新建，1 - 详情，2 - 编辑,
     imageList: {
-      ordinary: [],
-      multi: [],
-      tourism: [],
-      family: []
+    ordinary: [],
+    multi: [],
+    tourism: [],
+    family: []
     } //相册列表
   },
   mutations: {
@@ -19,7 +19,7 @@ const store = new Vuex.Store({
       state.task = task
     },
     showCreateTime (state, taskStatus) {
-      state.taskStatus = taskStatus
+      state.taskStatus = taskStatus 
     },
     updateImageList(state, list) {
       state.imageList = list;

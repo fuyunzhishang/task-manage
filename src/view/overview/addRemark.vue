@@ -46,10 +46,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      task: state => state.task,
-      taskStatus: state => state.taskStatus
-    })
+    ...mapState(['task', 'taskStatus'])
   },
   methods: {
     ...mapMutations([
