@@ -1,6 +1,6 @@
 <template>
 <div class="albert-list">
-  <el-upload class="avatar-uploader" action="http://localhost:1337/upload" :headers="reqHeader" :show-file-list="false" :on-success="handleAvatarSuccess" >
+  <el-upload v-show="albertStatus" class="avatar-uploader" action="/upload" :headers="reqHeader" :show-file-list="false" :on-success="handleAvatarSuccess" >
     <img v-if="imageUrl" :src="imageUrl" class="avatar">
     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
   </el-upload>
@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -17,6 +18,11 @@ export default {
         //['Content-Type']: 'multipart/form-data; boundary=----WebKitFormBoundary7N1BYOcPkTkILtsM'
       }
     };
+  },
+  computed: {
+    ...mapState([
+      'albertStatus'
+    ])
   },
   methods: {
     handleAvatarSuccess(res, file) {

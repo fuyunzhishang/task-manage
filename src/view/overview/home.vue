@@ -53,7 +53,6 @@ export default {
     })
   },
     methods: {
-        func:()=>{},
         ...mapMutations([
             'updateTask',
             'showCreateTime'

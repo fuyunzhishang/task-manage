@@ -1,33 +1,35 @@
 <template>
-<div id="albert-container">
-  <mt-navbar v-model="selected">
-  <mt-tab-item :id="1">普通</mt-tab-item>
-  <mt-tab-item :id="2">多人</mt-tab-item>
-  <mt-tab-item :id="3">旅游</mt-tab-item>
-  <mt-tab-item :id="4">亲子</mt-tab-item>
-</mt-navbar>
+    <div id="albert-container">
+        <mt-navbar v-model="selected">
+            <mt-tab-item :id="1">普通</mt-tab-item>
+            <mt-tab-item :id="2">多人</mt-tab-item>
+            <mt-tab-item :id="3">旅游</mt-tab-item>
+            <mt-tab-item :id="4">亲子</mt-tab-item>
+        </mt-navbar>
 
-<!-- tab-container -->
-<mt-tab-container v-model="selected">
-  <mt-tab-container-item :id="1">
-    <mt-cell v-for="(n, idx) in imageList.ordinary" :title="n.title" :key="idx">
-      <el-button type="text" class="albert-edit" @click="editAlbert(n)">编辑</el-button>
-      <el-button type="text" class="albert-del" @click="delAlbert">删除</el-button>
-        <!-- <span class="albert-edit" @click="editAlbert(n)">编辑</span>
-        <span class="albert-del" @click="delAlbert">删除</span> -->
-   </mt-cell>
-  </mt-tab-container-item>
-  <mt-tab-container-item :id="2">
-    <mt-cell v-for="(n, idx) in imageList.multi" :title="n.title" :key="idx" />
-  </mt-tab-container-item>
-  <mt-tab-container-item :id="3">
-    <mt-cell v-for="(n, idx) in imageList.tourism" :title="n.title" :key="idx" />
-  </mt-tab-container-item>
-  <mt-tab-container-item :id="4">
-    <mt-cell v-for="(n, idx) in imageList.family" :title="n.title" :key="idx" />
-  </mt-tab-container-item>
-</mt-tab-container>
-</div>
+        <!-- tab-container -->
+        <mt-tab-container v-model="selected">
+            <mt-tab-container-item :id="1">
+                <mt-cell v-for="(n, idx) in albertList.ordinary" :title="n.title" :key="idx">
+                    <el-button type="text" class="albert-edit" @click="editAlbert(n)">编辑</el-button>
+                    <el-button type="text" class="albert-del" @click="delAlbert">删除</el-button>
+                </mt-cell>
+            </mt-tab-container-item>
+            <mt-tab-container-item :id="2">
+                <mt-cell v-for="(n, idx) in albertList.multi" :title="n.title" :key="idx" />
+            </mt-tab-container-item>
+            <mt-tab-container-item :id="3">
+                <mt-cell v-for="(n, idx) in albertList.tourism" :title="n.title" :key="idx" />
+            </mt-tab-container-item>
+            <mt-tab-container-item :id="4">
+                <mt-cell v-for="(n, idx) in albertList.family" :title="n.title" :key="idx" />
+            </mt-tab-container-item>
+        </mt-tab-container>
+        <div @click="addAlbert" class="create-albert">
+            <span class="el-icon-plus"></span>
+            <span>新建</span>
+        </div>
+    </div>
 </template>
 
 
@@ -45,11 +47,11 @@ export default{
     }
   },
   created() {
-    this.getImageList()
+    this.getAlbertList()
   },
   computed: {
     ...mapState([
-      'imageList'
+      'albertList'
     ])
   },
   create() {
@@ -57,16 +59,24 @@ export default{
   },
   methods: {
     ...mapActions([
-      'getImageList'
+      'getAlbertList'
+    ]),
+    ...mapMutations([
+      'changeAlbertStatus',
+      'updateImageList'
     ]),
     editAlbert(albert)  {
-      console.log(albert)
-      this.$router.push('/overview/albertList');
+      this.changeAlbertStatus(2);
+      this.updateImageList(albert.imageList)
+      this.$router.push('/overview/images');
     },
     delAlbert(albert) {
     },
     showList() {
       console.log('list ss');
+    },
+    addAlbert() {
+
     }
   }
 }
@@ -77,5 +87,15 @@ export default{
 }
 .albert-edit span, .albert-del span {
   color: #409EFF;
+}
+.create-albert {
+    position: fixed;
+    bottom: 20%;
+    right: 2rem;
+    background-color: antiquewhite;
+    padding: 0.4rem 0.6rem;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 1px #888888;
+    z-index: 98;
 }
 </style>

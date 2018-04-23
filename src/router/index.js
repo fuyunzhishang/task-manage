@@ -16,6 +16,7 @@ import showUserInfo from '../view/center/showUserInfo';
 import setting from '../view/center/setting';
 import aboutUs from '../view/center/aboutUs';
 import contact from '../view/center/contact';
+import images from '../view/albert/images.vue';
 
 Vue.use(Router)
 
@@ -88,6 +89,11 @@ export default new Router({
               path: 'albertManage',
               name: 'albert_manage',
               component: albertManage
+            },
+            {
+              path: 'images',
+              name: 'images',
+              component: images
             },
             {
               path: 'albertList',
