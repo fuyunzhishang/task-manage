@@ -15,6 +15,7 @@ import { install } from 'vuex'
 
 let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWMwZWNiZjVhMzQwYTI2MDQyYjk3NmMiLCJpYXQiOjE1MjM1MjA2NjgsImV4cCI6MTUyNjExMjY2OH0.ORBkNRKFvhzKEs-QtVwrmZzqf03wZcTd88OKet0SUFw'
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+axios.defaults.baseURL = 'http://localhost:1337'
 
 Vue.config.productionTip = false
  Vue.use(VueResource)

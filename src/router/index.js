@@ -17,6 +17,7 @@ import setting from '../view/center/setting';
 import aboutUs from '../view/center/aboutUs';
 import contact from '../view/center/contact';
 import images from '../view/albert/images.vue';
+import addImage from '../view/albert/addImage.vue';
 
 Vue.use(Router)
 
@@ -94,6 +95,11 @@ export default new Router({
               path: 'images',
               name: 'images',
               component: images
+            },
+            {
+              path: 'addImage',
+              name: 'add_image',
+              component: addImage
             },
             {
               path: 'albertList',
