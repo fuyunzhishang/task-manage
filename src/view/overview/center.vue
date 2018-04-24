@@ -2,7 +2,7 @@
     <div class="presonal-center">
         <div class="avator-area">
             <img class="avator" src="../../assets/images/avator.jpg" alt="头像">
-            <span>{{ username }}</span>
+            <span>{{ userInfo.userName }}</span>
         </div>
         <mt-cell title="个人资料" is-link to="/overview/showUserInfo">
             <img slot="icon" src="../../../static/icon/icon_user_info.png" width="24" height="24">
@@ -19,12 +19,22 @@
     </div>
 </template>
 <script>
+import { mapState, mapActions } from 'vuex';
 export default {
-  data() {
-      return {
-          username: '略略略'
-      }
-  }
+    data() {
+        return {
+            username: '略略略'
+        }
+    },
+    created() {
+        this.getUserInfo();
+    },
+    computed: {
+        ...mapState(['userInfo'])
+    },
+    methods: {
+        ...mapActions(['getUserInfo'])
+    }
 }
 </script>
 <style scoped>
