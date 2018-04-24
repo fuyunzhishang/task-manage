@@ -23,7 +23,7 @@ export default {
         }
     },
     mounted: function() {
-        console.log(this.$route.name);
+        // console.log(this.$route.name);
     },
     
 }

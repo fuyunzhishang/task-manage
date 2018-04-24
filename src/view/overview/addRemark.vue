@@ -66,7 +66,7 @@ export default {
      */
     saveRemark () {
       // const data = JSON.stringify(params)
-      axios.post('http://localhost:1337/task', this.task).then(res => {
+      axios.post('/task', this.task).then(res => {
         this.$message({
           type: 'success',
           message: '添加成功!'
