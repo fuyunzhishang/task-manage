@@ -10,7 +10,7 @@
         <mt-cell title="设置" is-link to="/overview/setting">
             <img slot="icon" src="../../../static/icon/icon_setting.png" width="24" height="24">
         </mt-cell>
-        <mt-cell title="关于" is-link to="/overview/aboutUs">
+        <mt-cell title="功能介绍" is-link to="/overview/introduce">
             <img slot="icon" src="../../../static/icon/icon_about.png" width="24" height="24">
         </mt-cell>
         <mt-cell title="联系我们" is-link to="/overview/contact">

@@ -14,7 +14,7 @@ import dateManage from '../view/overview/dateManage.vue';
 import index from '../view/center/index';
 import showUserInfo from '../view/center/showUserInfo';
 import setting from '../view/center/setting';
-import aboutUs from '../view/center/aboutUs';
+import introduce from '../view/center/introduce';
 import contact from '../view/center/contact';
 import images from '../view/albert/images.vue';
 import addImage from '../view/albert/addImage.vue';
@@ -59,9 +59,9 @@ export default new Router({
               component: center,
             },
             {
-                path: 'aboutUs',
-                name: 'about_us',
-                component: aboutUs
+                path: 'introduce',
+                name: 'introduce',
+                component: introduce
              },
              {
                 path: 'showUserInfo',
