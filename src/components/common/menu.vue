@@ -1,5 +1,6 @@
 <template>
-  <div class="menu-wrap" v-show="visible">
+  <div class="menu-wrap" v-show="showMenu">
+        <div class="mask" @click="showMenu=false"></div>
         <div class="side-menu">
             <div class="avator-area">
                 <img class="avator" src="../../assets/images/avator.jpg" alt="头像">
@@ -7,7 +8,7 @@
             </div>
             <div class="menu-list">
                 <ul>
-                    <li v-for="item in menu" :key="item.value" @click="isShowMenu = false">
+                    <li v-for="item in menu" :key="item.value" @click="showMenu=false">
                         <router-link class="first-menu" :to="{ path: item.routerName }">
                             <img class="icon" :src="item.imgUrl"></img>
                             <span>{{ item.title }}</span>
@@ -101,7 +102,13 @@ export default {
                     title: '退出登录',
                     value: 4
                 }
-            ]
+            ],
+            showMenu: this.visible
+        }
+    },
+    watch: {
+        visible() {
+            this.showMenu = this.visible
         }
     },
     created() {

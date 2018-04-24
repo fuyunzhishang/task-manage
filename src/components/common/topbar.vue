@@ -1,11 +1,10 @@
 <template>
     <div>
         <header>
-            <el-button @click="isShowMenu = true" size="small" type="default"><i class="topbar-icon menu"></i></el-button>
+            <el-button @click="isShowMenu = !isShowMenu" size="small" type="default"><i class="topbar-icon menu"></i></el-button>
             <div class="efficiency">EFFICIENCY</div>
         </header>
         <!-- 菜单 -->
-        <div class="mask" @click="isShowMenu = false" v-if="isShowMenu"></div>
         <ec-menu :visible="isShowMenu"></ec-menu>
     </div>
 </template>
