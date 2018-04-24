@@ -1,9 +1,11 @@
 <template>
-  <div id="remark-warp" class="remark-wrap">
+  <div class="userInfo-wrap">
     <div class="page-header">
       <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
     </div>
-    <mt-cell title="头像" :value="avator"></mt-cell>
+    <mt-cell title="头像" :value="avator">
+      <img class="avator" src="../../assets/images/avator.jpg" alt="头像">
+    </mt-cell>
     <mt-cell title="用户名" :value="userInfo.userName"></mt-cell>
     <mt-cell title="E-mail" :value="userInfo.email"></mt-cell>
     <mt-cell title="手机号" :value="userInfo.phone"></mt-cell>
@@ -33,7 +35,9 @@ export default {
 }
 </script>
 <style scoped>
-.goBack {
-  color: #409EFF;
+.avator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 </style>

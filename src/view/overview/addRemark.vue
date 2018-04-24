@@ -115,7 +115,4 @@ export default {
 .content {
   resize: none;
 }
-.goBack {
-  color: #409EFF;
-}
 </style>
