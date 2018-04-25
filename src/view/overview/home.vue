@@ -17,7 +17,7 @@
                     <div class="td-content" v-else>{{ item.content || '无' }}</div>
                     <div class="td-operation">
                         <el-button type="text" class="td-detail" @click.stop="getDetail(item.id, 2)">编辑</el-button>
-                        <el-button @click="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
+                        <el-button @click.stop="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
             </div>

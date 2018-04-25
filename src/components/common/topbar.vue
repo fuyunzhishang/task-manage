@@ -15,7 +15,73 @@ export default {
     data() {
         return {
             isShowMenu: false,
-            username: '略略略'
+            username: '略略略',
+            menu: [
+                {
+                    title: '备忘录管理',
+                    imgUrl: '../../../static/icon/icon_task.png',
+                    routerName: '/overview/home',
+                    value: 0,
+                    children: [
+                        {
+                            title: '工作',
+                            value: 0
+                        },
+                        {
+                            title: '学习',
+                            value: 1
+                        },
+                        {
+                            title: '生活',
+                            value: 2
+                        },
+                        {
+                            title: '其他',
+                            value: 3
+                        }
+                    ]
+                },
+                {
+                    title: '相册管理',
+                    imgUrl: '../../../static/icon/icon_albert.png',
+                    routerName: '/overview/albertManage',
+                    value: 1,
+                    children: [
+                        {
+                            title: '普通',
+                            value: 0
+                        },
+                        {
+                            title: '多人',
+                            value: 1
+                        },
+                        {
+                            title: '旅游',
+                            value: 2
+                        },
+                        {
+                            title: '亲子',
+                            value: 3
+                        }
+                    ]
+                },
+                {
+                    title: '日程管理',
+                    imgUrl: '../../../static/icon/icon_dating.png',
+                    routerName: '/overview/scheduleManage',
+                    value: 2
+                },
+                {
+                    title: '计算器',
+                    imgUrl: '../../../static/icon/icon_cal.png',
+                    routerName: '/overview/cal',
+                    value: 3
+                },
+                {
+                    title: '退出登录',
+                    value: 4
+                }
+            ]
         }
     },
     components: {

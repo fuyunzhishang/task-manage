@@ -10,7 +10,7 @@ import center from '../view/overview/center.vue';
 import addRemark from '../view/overview/addRemark.vue';
 import albertManage from '../view/overview/albertManage.vue';
 import albertList from '../view/overview/albertList.vue';
-import dateManage from '../view/overview/dateManage.vue';
+import scheduleManage from '../view/overview/scheduleManage.vue';
 import index from '../view/center/index';
 import showUserInfo from '../view/center/showUserInfo';
 import setting from '../view/center/setting';
@@ -107,9 +107,9 @@ export default new Router({
               component: albertList
             },
             {
-              path: 'dateManage',
-              name: 'date_manage',
-              component: dateManage
+              path: 'scheduleManage',
+              name: 'schedule_manage',
+              component: scheduleManage
             }
           ]
         }
