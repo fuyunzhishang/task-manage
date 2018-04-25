@@ -89,7 +89,7 @@ export default {
                 {
                     title: '约会管理',
                     imgUrl: '../../../static/icon/icon_dating.png',
-                    routerName: '/overview/dateManage',
+                    routerName: '/overview/scheduleManage',
                     value: 2
                 },
                 {
