@@ -22,10 +22,10 @@ import addImage from '../view/albert/addImage.vue';
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      //component: () => import('@/components/main'),
       component: main,
       redirect: {
         name: 'overview'
