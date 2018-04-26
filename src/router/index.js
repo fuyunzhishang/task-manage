@@ -11,6 +11,7 @@ import addRemark from '../view/overview/addRemark.vue';
 import albertManage from '../view/overview/albertManage.vue';
 import albertList from '../view/overview/albertList.vue';
 import scheduleManage from '../view/overview/scheduleManage.vue';
+import addDating from '../view/overview/addDating.vue';
 import index from '../view/center/index';
 import showUserInfo from '../view/center/showUserInfo';
 import setting from '../view/center/setting';
@@ -110,6 +111,11 @@ export default new Router({
               path: 'scheduleManage',
               name: 'schedule_manage',
               component: scheduleManage
+            },
+            {
+              path: 'addDating',
+              name: 'add_dating',
+              component: addDating
             }
           ]
         }

@@ -6,7 +6,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         task: {},
-        taskStatus: 0, // 0 - 新建，1 - 详情，2 - 编辑,
+        taskStatus: 0, // 0 - 新建，1 - 详情，2 - 编辑
+        scheduleStatus: 0, // 0 - 新建，1 - 详情，2 - 编辑
+        schedule: {},
         // 相册列表
         albertList: {
             ordinary: [],
@@ -34,6 +36,12 @@ const store = new Vuex.Store({
         },
         updateImageList(state, list) {
             state.imageList = list;
+        },
+        modifyScheStatus(state, scheStatus) {
+            state.scheduleStatus = scheStatus;
+        },
+        updateSchedule(state, schedule) {
+            state.schedule = schedule;
         }
     },
     actions: {

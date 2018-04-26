@@ -2,13 +2,18 @@
   <div id="remark-warp" class="remark-wrap">
     <div class="page-header">
       <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
-      <el-button type="text" v-show="taskStatus === 2 || taskStatus === 0"  @click="saveRemark"><span class="icon-check"></span></el-button>
+      <el-button type="text" v-show="scheduleStatus === 2 || scheduleStatus === 0"  @click="save"><span class="icon-check"></span></el-button>
     </div>
-    <mt-field label="创建时间" v-model="createTime"></mt-field>
-    <mt-field label="标题" placeholder="请输入任务标题" v-model="task.title"></mt-field>
-    <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="remindTime"></mt-field>
-    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="task.remindTime"></mt-datetime-picker>
-    <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="task.content"></mt-field>
+    <mt-field label="标题" placeholder="请输入标题" v-model="schedule.title"></mt-field>
+    <mt-field label="地点" placeholder="请输入行程地点" v-model="schedule.address"></mt-field>
+    <mt-field label="开始时间" placeholder="选择开始时间" @click.native="openPicker" v-model="startTime"></mt-field>
+    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="schedule.startTime"></mt-datetime-picker>
+    <mt-field label="结束时间" placeholder="选择结束时间" @click.native="openPicker" v-model="endTime"></mt-field>
+    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="schedule.endTime"></mt-datetime-picker>
+    <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="schedule.event"></mt-field>
+    <mt-field label="是否提醒"><mt-switch v-model="schedule.isRemind"></mt-switch></mt-field>
+    <mt-field v-show="schedule.isRemind" label="提醒时间" placeholder="选择提醒时间" @click.native="openPicker" v-model="remindTime"></mt-field>
+    <mt-datetime-picker ref="picker" type="datetime" v-model="schedule.remindTime"></mt-datetime-picker>
   </div>
 </template>
 
@@ -22,56 +27,42 @@ import util from '../../util/util'
 export default {
   data () {
     return {
-      createTime: '',
+      startTime: '',
+      endTime: '',
       remindTime: ''
     }
   },
   components: {
   },
   watch: {
-    taskStatus(newVal) {
-      console.log(newVal)
-    }
   },
   mounted () {
-    switch (this.taskStatus) {
-      case 0:
-        this.createTime = util.dateFormat(new Date())
-        break;
-      case 2:
-        this.createTime = util.dateFormat(new Date(this.task.createdAt))
-        this.remindTime = util.dateFormat(new Date(this.task.remindTime))
-      default:
-        break;
-    }
+    
   },
   computed: {
-    ...mapState(['task', 'taskStatus'])
+    ...mapState(['scheduleStatus', 'schedule'])
   },
   methods: {
-    ...mapMutations([
-      'updateTask',
-    ]),
     openPicker () {
       this.$refs.picker.open()
     },
     /**
-     * 选则日期
+     * 选择日期
      */
     handleConfirm (time) {
-      this.remindTime = util.dateFormat(new Date(time))
+      // this.remindTime = util.dateFormat(new Date(time))
     },
     /**
      * 新建备忘录
      */
-    saveRemark () {
+    save() {
       // const data = JSON.stringify(params)
-      axios.post('http://localhost:1337/task', this.task).then(res => {
+      axios.post('/dateManage', this.schedule).then(res => {
         this.$message({
           type: 'success',
           message: '添加成功!'
         });
-        this.$router.push({ name: 'overview_home'});
+        this.$router.push({ name: 'schedule_manage'});
       })
     },
     updateRemark() {

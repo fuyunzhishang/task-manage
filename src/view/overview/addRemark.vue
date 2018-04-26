@@ -56,7 +56,7 @@ export default {
       this.$refs.picker.open()
     },
     /**
-     * 选则日期
+     * 选择日期
      */
     handleConfirm (time) {
       this.remindTime = util.dateFormat(new Date(time))
