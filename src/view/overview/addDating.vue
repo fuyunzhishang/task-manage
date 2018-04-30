@@ -8,12 +8,12 @@
     <mt-field label="地点" placeholder="请输入行程地点" v-model="schedule.address"></mt-field>
     <mt-field label="开始时间" placeholder="选择开始时间" @click.native="openPicker" v-model="startTime"></mt-field>
     <mt-datetime-picker ref="picker" type="datetime" @confirm="handleConfirm1" v-model="schedule.startTime"></mt-datetime-picker>
-    <mt-field label="结束时间" placeholder="选择结束时间" @click.native="openPicker" v-model="endTime"></mt-field>
+    <!-- <mt-field label="结束时间" placeholder="选择结束时间" @click.native="openPicker" v-model="endTime"></mt-field>
     <mt-datetime-picker  ref="picker" type="datetime"  @confirm="handleConfirm2" v-model="schedule.endTime"></mt-datetime-picker>
     <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="schedule.event"></mt-field>
     <mt-field label="是否提醒"><mt-switch v-model="isRemind"></mt-switch></mt-field>
     <mt-field v-show="isRemind" label="提醒时间" placeholder="选择提醒时间" @click.native="openPicker" v-model="remindTime"></mt-field>
-    <mt-datetime-picker  ref="picker" type="datetime" v-model="schedule.remindTime" @confirm="handleConfirm3"></mt-datetime-picker>
+    <mt-datetime-picker  ref="picker" type="datetime" v-model="schedule.remindTime" @confirm="handleConfirm3"></mt-datetime-picker> -->
   </div>
 </template>
 

@@ -9,8 +9,8 @@
             <span @click="search" class="search el-icon-search"></span>
         </div>
         <div class="todoList">
-            <div v-if="todoList.length > 0">
-                <li v-for="(item, index) in todoList" :key="index" @click="getDetail(item.id, 1)">
+            <div v-if="filterList.length > 0">
+                <li v-for="(item, index) in filterList" :key="index" @click="getDetail(item.id, 1)">
                     <div class="td-title" v-if="item.title && item.title.length > 3">{{ item.title.slice(0, 2) }}...</div>
                     <div class="td-title" v-else>{{ item.title || '无' }}</div>
                     <div class="td-content" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
@@ -41,7 +41,8 @@ export default {
         return {
             searched: false,
             searchKey: '',
-            todoList: []
+            todoList: [],
+            filterList: []
         }
   },
   created () {
@@ -64,6 +65,7 @@ export default {
     },
     getList () {
         axios.get('/task').then(res => {
+            this.filterList = res.data
             this.todoList = res.data
         })
     },
@@ -93,8 +95,14 @@ export default {
         })
     },
     search() {
-        axios.get('/task/?title=' + this.searchKey).then(res => {
-            console.log(res.data);
+        // axios.get('/task/?title=' + this.searchKey).then(res => {
+        //     console.log(res.data);
+        // })
+        this.filterList = []
+        this.todoList.map(item => {
+            if (item.title.indexOf(this.searchKey) !== -1) {
+                this.filterList.push(item)
+            }
         })
     }
   }
