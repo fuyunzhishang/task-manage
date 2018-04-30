@@ -11,8 +11,8 @@
     <mt-field label="结束时间" placeholder="选择结束时间" @click.native="openPicker" v-model="endTime"></mt-field>
     <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="schedule.endTime"></mt-datetime-picker>
     <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="schedule.event"></mt-field>
-    <mt-field label="是否提醒"><mt-switch v-model="schedule.isRemind"></mt-switch></mt-field>
-    <mt-field v-show="schedule.isRemind" label="提醒时间" placeholder="选择提醒时间" @click.native="openPicker" v-model="remindTime"></mt-field>
+    <mt-field label="是否提醒"><mt-switch v-model="isRemind"></mt-switch></mt-field>
+    <mt-field v-show="isRemind" label="提醒时间" placeholder="选择提醒时间" @click.native="openPicker" v-model="remindTime"></mt-field>
     <mt-datetime-picker ref="picker" type="datetime" v-model="schedule.remindTime"></mt-datetime-picker>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
     return {
       startTime: '',
       endTime: '',
-      remindTime: ''
+      remindTime: '',
+      isRemind: false
     }
   },
   components: {
@@ -37,7 +38,14 @@ export default {
   watch: {
   },
   mounted () {
-    
+    this.schedule.isRemind === 0 ? true : false;
+    if (this.scheduleStatus !== 0) {
+      this.startTime = util.dateFormat(new Date(this.schedule.startTime));
+      this.endTime = util.dateFormat(new Date(this.schedule.endTime));
+      if (this.schedule.remindTime) {
+        this.endTime = util.dateFormat(new Date(this.schedule.remindTime));
+      }
+    }
   },
   computed: {
     ...mapState(['scheduleStatus', 'schedule'])
