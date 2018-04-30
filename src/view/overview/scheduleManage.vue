@@ -5,14 +5,14 @@
         </header>
         <div class="todoList">
             <div v-if="scheduleList.length > 0">
-                <li v-for="(item, index) in scheduleList" :key="index" @click="getDetail(item.id, 1)">
+                <li v-for="(item, index) in scheduleList" :key="index" @click="getDetail(item._id, 1)">
                     <div class="td-title" v-if="item.title && item.title.length > 3">{{ item.title.slice(0, 2) }}...</div>
                     <div class="td-title" v-else>{{ item.title || '无' }}</div>
                     <div class="td-content" v-if="item.event && item.event.length > 8">{{ item.event.slice(0, 8) }}...</div>
                     <div class="td-content" v-else>{{ item.event || '无' }}</div>
                     <div class="td-operation">
                         <el-button type="text" class="td-detail" @click.stop="getDetail(item._id, 2)">编辑</el-button>
-                        <el-button @click="deleteSchedule(item.id)" type="text" class="td-del">删除</el-button>
+                        <el-button @click="deleteSchedule(item._id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
             </div>
