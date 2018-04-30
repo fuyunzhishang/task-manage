@@ -6,14 +6,14 @@
     </div>
     <mt-field label="标题" placeholder="请输入标题" v-model="schedule.title"></mt-field>
     <mt-field label="地点" placeholder="请输入行程地点" v-model="schedule.address"></mt-field>
-    <mt-field label="开始时间" placeholder="选择开始时间" @click.native="openPicker" v-model="startTime"></mt-field>
-    <mt-datetime-picker ref="picker" type="datetime" @confirm="handleConfirm1" v-model="schedule.startTime"></mt-datetime-picker>
-    <mt-field label="结束时间" placeholder="选择结束时间" @click.native="openPicker" v-model="endTime"></mt-field>
-    <mt-datetime-picker  ref="picker" type="datetime"  @confirm="handleConfirm2" v-model="schedule.endTime"></mt-datetime-picker>
+    <mt-field label="开始时间" placeholder="选择开始时间" @click.native="openPicker(1)" v-model="startTime"></mt-field>
+    <mt-datetime-picker ref="picker1" type="datetime" @confirm="handleConfirm1" v-model="schedule.startTime"></mt-datetime-picker>
+    <mt-field label="结束时间" placeholder="选择结束时间" @click.native="openPicker(2)" v-model="endTime"></mt-field>
+    <mt-datetime-picker ref="picker2" type="datetime"  @confirm="handleConfirm2" v-model="schedule.endTime"></mt-datetime-picker>
     <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="schedule.event"></mt-field>
-    <mt-field label="是否提醒"><mt-switch v-model="isRemind"></mt-switch></mt-field>
-    <mt-field v-show="isRemind" label="提醒时间" placeholder="选择提醒时间" @click.native="openPicker" v-model="remindTime"></mt-field>
-    <mt-datetime-picker  ref="picker" type="datetime" v-model="schedule.remindTime" @confirm="handleConfirm3"></mt-datetime-picker>
+    <mt-field label="是否提醒"><mt-switch v-model="schedule.isRemind"></mt-switch></mt-field>
+    <mt-field v-show="schedule.isRemind" label="提醒时间" placeholder="选择提醒时间" @click.native="openPicker(3)" v-model="remindTime"></mt-field>
+    <mt-datetime-picker ref="picker3" type="datetime" v-model="schedule.remindTime" @confirm="handleConfirm3"></mt-datetime-picker>
   </div>
 </template>
 
@@ -29,8 +29,7 @@ export default {
     return {
       startTime: '',
       endTime: '',
-      remindTime: '',
-      isRemind: false
+      remindTime: ''
     }
   },
   components: {
@@ -44,26 +43,29 @@ export default {
     if (this.schedule.endTime) {
       this.endTime = util.dateFormat(new Date(this.schedule.endTime));
     }
-    if (this.schedule.isRemind === 1) {
-      this.isRemind = true;
-      this.remindTime = util.dateFormat(new Date(this.schedule.remindTime));
-    } else {
-      this.isRemind = false;
-    }
+    this.remindTime = util.dateFormat(new Date(this.schedule.remindTime));
   },
   computed: {
     ...mapState(['scheduleStatus', 'schedule'])
   },
   methods: {
-    openPicker () {
-      this.$refs.picker.open()
+    openPicker (type) {
+      switch (type) {
+        case 1:
+          this.$refs.picker1.open();
+          break;
+        case 2:
+          this.$refs.picker2.open();
+          break;
+        case 3:
+          this.$refs.picker3.open();
+          break;
+      }
     },
     /**
      * 选择日期
      */
     handleConfirm1 (time) {
-      console.log('------');
-      console.log(time);
       this.startTime = util.dateFormat(new Date(time));
     },
     handleConfirm2 (time) {
