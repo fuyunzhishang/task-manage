@@ -26,8 +26,8 @@
     </div>
     <!-- logo end -->
     <!-- form for login -->
-    <el-form v-show="showLogin" label-position="right" :model="loginData">
-      <h3>登录</h3>
+    <el-form class="login-from" v-show="showLogin" label-position="right" :model="loginData">
+      <h3 class="title">登录</h3>
       <el-form-item>
         <el-input placeholder="请输入手机号" v-model="loginData.phone"></el-input>
       </el-form-item>
@@ -43,8 +43,8 @@
     </el-form>
     <!-- form for login end -->
     <!-- form for register -->
-    <el-form v-show="showRegister" label-position="right" :model="regData">
-      <h3>注册</h3>
+    <el-form class="register-from" v-show="showRegister" label-position="right" :model="regData">
+      <h3 class="title">注册</h3>
       <el-form-item>
         <el-input placeholder="请输入手机号" v-model="regData.username"></el-input>
       </el-form-item>
@@ -86,8 +86,27 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .login-btn, .register-btn {
   width: 100%;
+  /deep/ span {
+    color: #ffffff;
+  }
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.login-from, .register-from {
+  padding: 0 2rem;
+  .title {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+  }
+  .emphasize {
+    color: #409EFF;
+  }
 }
 </style>
