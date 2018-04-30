@@ -5,6 +5,7 @@ import axios from 'axios'
 Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
+        isShowMenu: false,
         task: {},
         taskStatus: 0, // 0 - 新建，1 - 详情，2 - 编辑
         scheduleStatus: 0, // 0 - 新建，1 - 详情，2 - 编辑
@@ -42,6 +43,9 @@ const store = new Vuex.Store({
         },
         updateSchedule(state, schedule) {
             state.schedule = schedule;
+        },
+        controlMenuShow(state, isShow) {
+            state.isShowMenu = isShow;
         }
     },
     actions: {

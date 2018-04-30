@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <el-button @click="isShowMenu = !isShowMenu" size="small" type="default"><i class="topbar-icon menu"></i></el-button>
+            <el-button @click="showMenu" size="small" type="default"><i class="topbar-icon menu"></i></el-button>
             <div class="efficiency">EFFICIENCY</div>
         </header>
         <!-- 菜单 -->
@@ -11,10 +11,11 @@
 
 <script>
 import ecMenu from './menu'
+import { mapState, mapMutations } from 'vuex';
 export default {
     data() {
         return {
-            isShowMenu: false,
+            // isShowMenu: false,
             username: '略略略',
             menu: [
                 {
@@ -82,6 +83,15 @@ export default {
                     value: 4
                 }
             ]
+        }
+    },
+    computed: {
+        ...mapState(['isShowMenu'])
+    },
+    methods: {
+        ...mapMutations(['controlMenuShow']),
+        showMenu() {
+            this.controlMenuShow(true);
         }
     },
     components: {

@@ -1,6 +1,6 @@
 <template>
   <div class="menu-wrap" v-show="showMenu">
-        <div class="mask" @click="showMenu=false"></div>
+        <div class="mask" @click="hideMenu"></div>
         <div class="side-menu">
             <div class="avator-area">
                 <img class="avator" src="../../assets/images/avator.jpg" alt="头像">
@@ -8,7 +8,7 @@
             </div>
             <div class="menu-list">
                 <ul>
-                    <li v-for="item in menu" :key="item.value" @click="showMenu=false">
+                    <li v-for="item in menu" :key="item.value" @click="hideMenu">
                         <router-link class="first-menu" :to="{ path: item.routerName }">
                             <img class="icon" :src="item.imgUrl"></img>
                             <span>{{ item.title }}</span>
@@ -27,7 +27,7 @@
     </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 export default {
     props: {
         visible: {
@@ -118,7 +118,11 @@ export default {
         ...mapState(['userInfo'])
     },
     methods: {
-        ...mapActions(['getUserInfo'])
+        ...mapMutations(['controlMenuShow']),
+        ...mapActions(['getUserInfo']),
+        hideMenu() {
+            this.controlMenuShow(false);
+        }
     }
 }
 </script>
