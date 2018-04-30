@@ -47,14 +47,13 @@ export default {
     methods: {
         ...mapMutations(['modifyScheStatus', 'updateSchedule']),
         addSchedule() {
-            this.$router.push("/overview/addDating");
+            this.$router.push({ name: 'add_dating' });
             this.modifyScheStatus(0);
             this.updateSchedule({});
         },
         getList() {
             axios.get("/dateManage").then(res => {
                 this.scheduleList = res.data;
-                console.table(this.scheduleList);
             });
         },
         deleteSchedule(scheId) {
@@ -63,7 +62,7 @@ export default {
                 cancelButtonText: "取消",
                 type: "warning"
             }).then(res => {
-                axios.delete("/dateManage/" + taskId).then(res => {
+                axios.delete("/dateManage/" + scheId).then(res => {
                     this.getList();
                     this.$message({
                         type: "success",
