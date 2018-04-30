@@ -11,7 +11,7 @@
                     <div class="td-content" v-if="item.event && item.event.length > 8">{{ item.event.slice(0, 8) }}...</div>
                     <div class="td-content" v-else>{{ item.event || '无' }}</div>
                     <div class="td-operation">
-                        <el-button type="text" class="td-detail" @click.stop="getDetail(item.id, 2)">编辑</el-button>
+                        <el-button type="text" class="td-detail" @click.stop="getDetail(item._id, 2)">编辑</el-button>
                         <el-button @click="deleteSchedule(item.id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
@@ -54,6 +54,7 @@ export default {
         getList() {
             axios.get("/dateManage").then(res => {
                 this.scheduleList = res.data;
+                console.table(this.scheduleList);
             });
         },
         deleteSchedule(scheId) {
@@ -77,8 +78,8 @@ export default {
         getDetail(scheId, status) {
             this.modifyScheStatus(status);
             axios.get("/dateManage/" + scheId).then(res => {
-                this.updateTask(res.data);
-                this.$router.push("/overview/addDating");
+                this.updateSchedule(res.data);
+                this.$router.push({ name: 'add_dating' });
             });
         }
     }
