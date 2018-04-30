@@ -6,7 +6,7 @@
 
         <div class="search-area">
             <el-input v-model="searchKey" placeholder="请输入关键字"></el-input>
-            <span class="search el-icon-search"></span>
+            <span @click="search" class="search el-icon-search"></span>
         </div>
         <div class="todoList">
             <div v-if="todoList.length > 0">
@@ -90,6 +90,11 @@ export default {
         axios.get('/task/' + taskId).then(res => {
             this.updateTask(res.data)
             this.$router.push('/overview/addRemark')
+        })
+    },
+    search() {
+        axios.get('/task/?title=' + this.searchKey).then(res => {
+            console.log(res.data);
         })
     }
   }
