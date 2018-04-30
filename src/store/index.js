@@ -20,7 +20,9 @@ const store = new Vuex.Store({
         // 相册状态
         albertStatus: 0,
         imageList: [],
-        userInfo: []
+        userInfo: [],
+        // 登录状态 0-未登录， 1-已登录
+        loginStatus: 0
     },
     mutations: {
         updateTask(state, task) {
@@ -71,13 +73,21 @@ const store = new Vuex.Store({
                 })
             })
         },
-        getUserInfo({ commit, state }) {
+        getUserInfo({
+            commit,
+            state
+        }) {
             axios.get('/users').then(res => {
                 const usInfo = res.data
                 state.userInfo = usInfo[0];
-            }
-        );
-      }
+            });
+        },
+        getUser(store, {name}) {
+            debugger
+            axios.get('/users?userName=' + name).then(res => {
+                console.log(res.data)
+            })
+        }
     }
 })
 export default store
