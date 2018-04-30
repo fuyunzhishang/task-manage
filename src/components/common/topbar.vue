@@ -15,8 +15,6 @@ import { mapState, mapMutations } from 'vuex';
 export default {
     data() {
         return {
-            // isShowMenu: false,
-            username: '略略略',
             menu: [
                 {
                     title: '备忘录管理',
