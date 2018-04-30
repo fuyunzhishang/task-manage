@@ -19,6 +19,7 @@ import introduce from '../view/center/introduce';
 import contact from '../view/center/contact';
 import images from '../view/albert/images.vue';
 import addImage from '../view/albert/addImage.vue';
+import Login from '../view/login/Login.vue';
 
 Vue.use(Router)
 
@@ -45,6 +46,12 @@ export default new Router({
               name: 'overview_home',
               meta: {},
               component: home
+            },
+            {
+              path: 'login',
+              name: 'login',
+              meta: {},
+              component: Login
             },
             {
               path: 'cal',
