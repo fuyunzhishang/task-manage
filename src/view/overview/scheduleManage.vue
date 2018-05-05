@@ -30,6 +30,8 @@
 import axios from "axios";
 import eventBus from "../../eventBus";
 import { mapState, mapMutations, mapActions } from "vuex";
+import util from '../../util/util'
+import moment from 'moment'
 
 export default {
     data() {
@@ -54,6 +56,20 @@ export default {
         getList() {
             axios.get("/dateManage").then(res => {
                 this.scheduleList = res.data;
+                this.scheduleList.map(item => {
+                    let delyTime = new Date(item.remindTime) - new Date() - 8 * 3600000
+                    console.log(delyTime)
+                    if (delyTime > 0) {
+                        (function (that, item) {
+                            setTimeout(function () {
+                                that.$message({
+                                    type: 'info',
+                                    message: item.title + '事件提醒'
+                                })
+                            }, delyTime);
+                        }(this, item))
+                    }
+                })
             });
         },
         deleteSchedule(scheId) {
