@@ -1,7 +1,7 @@
 <template>  
   <div class="login-container">
     <!-- logo -->
-    <div class="logo">
+    <div class="logo" v-show="showLogin">
       <img src="../../assets/logo.png" alt="">
     </div>
     <!-- logo end -->
@@ -33,6 +33,19 @@
       </el-form-item>
       <el-form-item>
         <el-input placeholder="确认密码" v-model="regData.tpsw"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input placeholder="请输入用户名" v-model="regData.tpsw"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input placeholder="请输入邮箱地址" v-model="regData.tpsw"></el-input>
+      </el-form-item>
+      <el-form-item label="性别">
+        <el-radio v-model="regData.gender" label="0">男</el-radio>
+        <el-radio v-model="regData.gender" label="1">女</el-radio>
+      </el-form-item>
+      <el-form-item label="生日">
+        <el-date-picker v-model="regData.birthDate" type="date" placeholder="请选择生日"> </el-date-picker>
       </el-form-item>
       <el-form-item>
         <el-button class="register-btn" size="medium" @click="" type="primary">注册</el-button>

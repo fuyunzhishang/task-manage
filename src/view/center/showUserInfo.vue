@@ -9,14 +9,16 @@
     <mt-cell title="用户名" :value="userInfo.userName"></mt-cell>
     <mt-cell title="E-mail" :value="userInfo.email"></mt-cell>
     <mt-cell title="手机号" :value="userInfo.phone"></mt-cell>
-    <mt-cell title="性别" :value="userInfo.gender"></mt-cell>
-    <mt-cell title="生日" :value="userInfo.birth"></mt-cell>
+    <mt-cell title="性别" v-show="userInfo.gender === 0">男</mt-cell>
+    <mt-cell title="性别" v-show="userInfo.gender === 1">女</mt-cell>
+    <mt-cell title="生日" :value="userInfo.birthDate"></mt-cell>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { mapState, mapActions } from 'vuex';
+import util from '../../util/util';
 export default {
   data() {
     return {
@@ -25,6 +27,11 @@ export default {
   },
   computed: {
     ...mapState(['userInfo'])
+  },
+  watch: {
+    userInfo(val) {
+      this.userInfo.birthDate = util.dateFormat(new Date(val.birthDate));
+    }
   },
   created() {
     this.getUserInfo();
