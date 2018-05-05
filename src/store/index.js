@@ -21,7 +21,9 @@ const store = new Vuex.Store({
         albertStatus: 0,
         imageList: [],
         userInfo: [],
-        selected: 1
+        selected: 1,
+        // 登录状态 0-未登录， 1-已登录
+        loginStatus: 0
     },
     mutations: {
         updateTask(state, task) {
@@ -75,13 +77,28 @@ const store = new Vuex.Store({
                 })
             })
         },
-        getUserInfo({ commit, state }) {
+        getUserInfo({
+            commit,
+            state
+        }) {
             axios.get('/users').then(res => {
                 const usInfo = res.data
                 state.userInfo = usInfo[0];
-            }
-        );
-      }
+            });
+        },
+        getUser(store, data) {
+            axios.get('/users?phone=' + data.phone).then(res => {
+                if (res.data.length) {
+                    if (res.data[0].password === data.psw) {
+                        store.state.loginStatus = 1
+                    } else {
+                        store.state.loginStatus = 0
+                    }
+                } else {
+                    store.state.loginStatus = 0
+                }
+            })
+        }
     }
 })
 export default store

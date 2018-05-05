@@ -30,7 +30,7 @@ export default new Router({
       path: '/',
       component: main,
       redirect: {
-        name: 'overview'
+        name: 'login'
       },
       children: [
         { // 首页
