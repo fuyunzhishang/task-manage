@@ -1,4 +1,24 @@
 <template>  
+    <!-- <div class="Login">
+        <div class="login-wrap" v-show="showLogin">
+			<h3>登录</h3>
+			<p v-show="showTishi">{{tishi}}</p>
+            <el-input type="text" placeholder="请输入用户名" v-model="loginData.username"></el-input>
+            <el-input type="password" placeholder="请输入密码" v-model="loginData.psw"></el-input>
+            <el-button size="medium" @click="login" type="primary">登录</el-button>
+			<div @click="toRegister">没有账号？马上注册</div>
+		</div>
+
+		<div class="register-wrap" v-show="showRegister">
+			<h3>注册</h3>
+			<p v-show="showTishi">{{tishi}}</p>
+			<el-input type="text" placeholder="请输入用户名" v-model="regData.username"></el-input>
+			<el-input type="password" placeholder="请输入密码" v-model="regData.psw"></el-input>
+            <el-input type="password" placeholder="确认密码" v-model="regData.tpsw"></el-input>
+			<el-button size="medium" @click="register">注册</el-button>
+			<div @click="toLogin">已有账号？马上登录</div>
+		</div>
+    </div> -->
   <div class="login-container">
     <!-- logo -->
     <div class="logo" v-show="showLogin">
@@ -86,6 +106,14 @@ export default {
       'getUser'
     ]),
     login() {
+      this.getUser(this.loginData).then(() => {
+        if (this.loginStatus === 0) {
+          this.$message({
+            type: 'error',
+            message: '用户名或密码错误'
+          })
+        }
+      })
       this.getUser(this.loginData)
     },
     goToLogin() {

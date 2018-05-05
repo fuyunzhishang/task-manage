@@ -22,7 +22,7 @@ const store = new Vuex.Store({
         imageList: [],
         userInfo: [],
         selected: 1,
-        // 登录状态 0-未登录， 1-已登录
+        // 登录状态 0-未登录， 1-已登录, -2密码错误
         loginStatus: 0
     },
     mutations: {
