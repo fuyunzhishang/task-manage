@@ -113,7 +113,7 @@ export default {
         }
     },
     created() {
-        this.getUserInfo();
+        //this.getUserInfo();
     },
     computed: {
         ...mapState([
@@ -128,6 +128,7 @@ export default {
             this.controlMenuShow(false);
         },
         exist() {
+            localStorage.setItem('loginStatus', 0)
             this.updateLoginStatus(0);
             this.controlMenuShow(false);
             this.$router.push({name: 'login'});

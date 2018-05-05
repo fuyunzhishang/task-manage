@@ -83,14 +83,10 @@ const store = new Vuex.Store({
                 })
             })
         },
-        getUserInfo({
-            commit,
-            state
-        }) {
-            axios.get('/users').then(res => {
-                const usInfo = res.data
-                // state.userInfo = usInfo[0];
-            });
+        getUserInfo(store, id) {
+            axios.get('/users/' + id).then(res => {
+                store.state.userInfo = res.data
+            })
         },
         getUser(store, data) {
             return axios.get('/users?phone=' + data.phone)

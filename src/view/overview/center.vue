@@ -27,7 +27,7 @@ export default {
         }
     },
     created() {
-        this.getUserInfo();
+        //this.getUserInfo();
     },
     computed: {
         ...mapState(['userInfo'])
