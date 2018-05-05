@@ -21,6 +21,7 @@
                             </li>
                         </ul>
                     </li>
+                    <li @click="exist">退出登录</li>
                 </ul>
             </div>
         </div>
@@ -101,10 +102,6 @@ export default {
                     imgUrl: '../../../static/icon/icon_cal.png',
                     routerName: 'overview_cal',
                     value: 3
-                },
-                {
-                    title: '退出登录',
-                    value: 4
                 }
             ],
             showMenu: this.visible
@@ -125,10 +122,15 @@ export default {
         ])
     },
     methods: {
-        ...mapMutations(['controlMenuShow']),
+        ...mapMutations(['controlMenuShow', 'updateLoginStatus']),
         ...mapActions(['getUserInfo']),
         hideMenu() {
             this.controlMenuShow(false);
+        },
+        exist() {
+            this.updateLoginStatus(0);
+            this.controlMenuShow(false);
+            this.$router.push({name: 'login'});
         }
     }
 }

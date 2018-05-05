@@ -29,10 +29,10 @@
     <el-form class="login-from" v-show="showLogin" label-position="right" :model="loginData">
       <h3 class="title">登录</h3>
       <el-form-item>
-        <el-input placeholder="请输入手机号" v-model="loginData.phone"></el-input>
+        <el-input placeholder="请输入手机号" :maxlength="11" v-model="loginData.phone"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="请输入密码" v-model="loginData.psw"></el-input>
+        <el-input type="password" placeholder="请输入密码" v-model="loginData.psw"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button class="login-btn" size="medium" @click="login" type="primary">登录</el-button>
@@ -46,26 +46,26 @@
     <el-form class="register-from" v-show="showRegister" label-position="right" :model="regData">
       <h3 class="title">注册</h3>
       <el-form-item>
-        <el-input placeholder="请输入手机号(必填)" v-model="regData.username"></el-input>
+        <el-input placeholder="请输入手机号(必填)" v-model="regData.phone"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="请输入密码" v-model="regData.psw"></el-input>
+        <el-input type="password" placeholder="请输入密码" v-model="regData.password"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="确认密码" v-model="regData.tpsw"></el-input>
+        <el-input type="password" placeholder="确认密码" v-model="regData.tpsw"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="请输入用户名" v-model="regData.tpsw"></el-input>
+        <el-input placeholder="请输入用户名" v-model="regData.userName"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input placeholder="请输入邮箱地址" v-model="regData.tpsw"></el-input>
+        <el-input placeholder="请输入邮箱地址" v-model="regData.email"></el-input>
       </el-form-item>
       <el-form-item label="性别">
         <el-radio v-model="regData.gender" label="0">男</el-radio>
         <el-radio v-model="regData.gender" label="1">女</el-radio>
       </el-form-item>
       <el-form-item label="生日">
-        <el-date-picker v-model="regData.birthDate" type="date" placeholder="请选择生日"> </el-date-picker>
+        <el-date-picker v-model="regData.birthDate" value-format="yyyy-MM-dd" type="date" placeholder="请选择生日"></el-date-picker>
       </el-form-item>
       <el-form-item>
         <el-button class="register-btn" size="medium" @click="register" type="primary">注册</el-button>
@@ -79,6 +79,7 @@
 </template>
 <script type="text/javascript">
 import { mapState, mapMutations, mapActions } from "vuex";
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -130,7 +131,47 @@ export default {
       })
     },
     register() {
-      
+      if (!this.regData.phone) {
+        this.$message({
+            type: 'warninig',
+            message: '手机号不能为空！'
+          }
+        );
+      } else if (!(/^\d{11}$/.test(this.regData.phone))) {
+        this.$message({
+            type: 'warninig',
+            message: '请输入正确的手机号！'
+          }
+        );
+      } else if (!this.regData.password) {
+        this.$message({
+            type: 'warninig',
+            message: '密码不能为空！'
+          }
+        );
+      } else if (!this.regData.tpsw) {
+        this.$message({
+            type: 'warninig',
+            message: '请确认密码！'
+          }
+        );
+      } else if (this.regData.password !== this.regData.tpsw) {
+        this.$message({
+            type: 'warninig',
+            message: '两次密码不一致！'
+          }
+        );
+      } else {
+        const params = this.regData;
+        axios.post('/users', params).then(res => {
+          this.$message({
+            type: 'success',
+            message: '注册成功！请登录'
+          });
+          this.showRegister = false;
+          this.showLogin = true;
+        })
+      }
     },
     goToLogin() {
       this.showLogin = true;

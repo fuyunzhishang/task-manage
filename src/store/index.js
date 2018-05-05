@@ -86,7 +86,7 @@ const store = new Vuex.Store({
         }) {
             axios.get('/users').then(res => {
                 const usInfo = res.data
-                state.userInfo = usInfo[0];
+                // state.userInfo = usInfo[0];
             });
         },
         getUser(store, data) {
