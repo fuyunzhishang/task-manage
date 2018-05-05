@@ -83,16 +83,17 @@ const store = new Vuex.Store({
         }) {
             axios.get('/users').then(res => {
                 const usInfo = res.data
-                state.userInfo = usInfo[0];
+                // state.userInfo = usInfo[0];
             });
         },
         getUser(store, data) {
             axios.get('/users?phone=' + data.phone).then(res => {
                 if (res.data.length) {
+                    store.state.userInfo = res.data[0];
                     if (res.data[0].password === data.psw) {
                         store.state.loginStatus = 1
                     } else {
-                        store.state.loginStatus = 0
+                        store.state.loginStatus = 2
                     }
                 } else {
                     store.state.loginStatus = 0
