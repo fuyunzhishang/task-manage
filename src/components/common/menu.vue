@@ -9,13 +9,13 @@
             <div class="menu-list">
                 <ul>
                     <li v-for="item in menu" :key="item.value" @click="hideMenu">
-                        <router-link class="first-menu" :to="{ name: item.routerName, query: { selected: 1} }">
+                        <router-link class="first-menu" :to=" loginStatus == 1? { name: item.routerName, query: { selected: 1} } : {name: 'error'}">
                             <img class="icon" :src="item.imgUrl"></img>
                             <span>{{ item.title }}</span>
                         </router-link>
                         <ul v-if="item.children">
                             <li class="second-menu" v-for="child in item.children" :key="child.value">
-                                <router-link :to="{ name: item.routerName, query: { selected: child.selected} }">
+                                <router-link :to="loginStatus === 1? { name: item.routerName, query: { selected: child.selected} } : {name: 'error'}">
                                     {{ child.title }}
                                 </router-link>
                             </li>
@@ -119,7 +119,10 @@ export default {
         this.getUserInfo();
     },
     computed: {
-        ...mapState(['userInfo'])
+        ...mapState([
+            'userInfo',
+            'loginStatus'
+        ])
     },
     methods: {
         ...mapMutations(['controlMenuShow']),

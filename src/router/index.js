@@ -20,6 +20,7 @@ import contact from '../view/center/contact';
 import images from '../view/albert/images.vue';
 import addImage from '../view/albert/addImage.vue';
 import Login from '../view/login/Login.vue';
+import error from '../view/login/error.vue';
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ export default new Router({
               path: 'center',
               name: 'overview_center',
               component: center,
+            },
+            {
+              path: 'error',
+              name: 'error',
+              component: error,
             },
             {
                 path: 'introduce',

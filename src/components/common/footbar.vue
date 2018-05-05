@@ -1,14 +1,14 @@
 <template>
     <footer class="footerbar">
-        <router-link :class="{ active: routerName === 'overview_home' }" :to="{ name: 'overview_home', params: {} }" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_home' }" :to="loginStatus === 1? { name: 'overview_home', params: {} } : {name: 'error'}" class="footerbar-item">
             <i class="footerbar-item-icon home"></i>
             <p class="footerbar-item-name">首页</p>
         </router-link>
-        <router-link :class="{ active: routerName === 'overview_cal' }" :to="{ name: 'overview_cal', params: {} }" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_cal' }" :to="loginStatus === 1 ? { name: 'overview_cal', params: {} } : {name: 'error'}" class="footerbar-item">
             <i class="footerbar-item-icon cal"></i>
             <p class="footerbar-item-name">计算器</p>
         </router-link>
-        <router-link :class="{ active: routerName === 'overview_center' }" :to="{ name: 'overview_center', params: {} }" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_center' }" :to=" loginStatus === 1 ? { name: 'overview_center', params: {} } : {name: 'error'}" class="footerbar-item">
             <i class="footerbar-item-icon center"></i>
             <p class="footerbar-item-name">我的</p>
         </router-link>
@@ -16,11 +16,15 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapActions } from "vuex";
 export default {
     computed: {
         routerName() {
             return this.$route.name;
-        }
+        },
+        ...mapState([
+            'loginStatus'
+        ])
     },
     mounted: function() {
         // console.log(this.$route.name);
