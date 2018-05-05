@@ -38,7 +38,7 @@
         <el-button class="login-btn" size="medium" @click="login" type="primary">登录</el-button>
       </el-form-item>
       <el-form-item>
-        <div class="to-register" @click="">没有账号？马上注册</div>
+        <div class="to-register">没有账号？马上<span @click="goToRegister">注册</span></div>
       </el-form-item>
     </el-form>
     <!-- form for login end -->
@@ -58,7 +58,7 @@
         <el-button class="register-btn" size="medium" @click="" type="primary">注册</el-button>
       </el-form-item>
       <el-form-item>
-        <div class="to-login" @click="">已有账号？马上登录</div>
+        <div class="to-login">已有账号？马上<span @click="goToLogin">登录</span></div>
       </el-form-item>
     </el-form>
     <!-- form for register end -->
@@ -101,6 +101,15 @@ export default {
           })
         }
       })
+      this.getUser(this.loginData)
+    },
+    goToLogin() {
+      this.showLogin = true;
+      this.showRegister = false;
+    },
+    goToRegister() {
+      this.showLogin = false;
+      this.showRegister = true;
     }
   }
 };
@@ -126,6 +135,12 @@ export default {
   }
   .emphasize {
     color: #409EFF;
+  }
+}
+.to-login, .to-register {
+  span {
+    color:#409EFF;
+    font-weight: bold;
   }
 }
 </style>
