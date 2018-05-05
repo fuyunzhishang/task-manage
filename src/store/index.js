@@ -52,6 +52,9 @@ const store = new Vuex.Store({
         },
         setSelectedStatus(state, selected) {
             state.selected = selected;
+        },
+        updateLoginStatus(state, status) {
+            state.loginStatus = status
         }
     },
     actions: {
@@ -87,17 +90,7 @@ const store = new Vuex.Store({
             });
         },
         getUser(store, data) {
-            axios.get('/users?phone=' + data.phone).then(res => {
-                if (res.data.length) {
-                    if (res.data[0].password === data.psw) {
-                        store.state.loginStatus = 1
-                    } else {
-                        store.state.loginStatus = 0
-                    }
-                } else {
-                    store.state.loginStatus = 0
-                }
-            })
+            return axios.get('/users?phone=' + data.phone)
         }
     }
 })

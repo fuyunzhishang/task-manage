@@ -105,16 +105,29 @@ export default {
     ...mapActions([
       'getUser'
     ]),
+    ...mapMutations([
+      'updateLoginStatus'
+    ]),
     login() {
-      this.getUser(this.loginData).then(() => {
-        if (this.loginStatus === 0) {
-          this.$message({
-            type: 'error',
-            message: '用户名或密码错误'
-          })
+      this.getUser(this.loginData).then(res => {
+        if (res.data.length) {
+          if (res.data[0].password == this.loginData.psw) {
+            this.updateLoginStatus(1)
+          } else {
+            this.updateLoginStatus(2)
+            this.showError()
+          }
+        } else {
+          this.updateLoginStatus(2)
+          this.showError()
         }
       })
-      this.getUser(this.loginData)
+    },
+    showError() {
+      this.$message({
+        type: 'error',
+        message: '用户名或密码错误'
+      })
     },
     register() {
       
