@@ -35,7 +35,7 @@
         <el-input placeholder="请输入密码" v-model="loginData.psw"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button class="login-btn" size="medium" @click="getUser" type="primary">登录</el-button>
+        <el-button class="login-btn" size="medium" @click="login" type="primary">登录</el-button>
       </el-form-item>
       <el-form-item>
         <div class="to-register" @click="">没有账号？马上注册</div>
@@ -76,11 +76,23 @@ export default {
       showTishi: ''
     };
   },
+  computed: {
+    ...mapState([
+      'loginStatus'
+    ])
+  },
+  watch: {
+    loginStatus(newVal) {
+      if (newVal === 1) {
+        this.$router.push('/overview/home')
+      }
+    }
+  },
   methods: {
     ...mapActions([
       'getUser'
     ]),
-    getUser() {
+    login() {
       this.getUser(this.loginData)
     }
   }
