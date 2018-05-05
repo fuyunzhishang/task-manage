@@ -36,11 +36,14 @@ export default {
   mounted () {
     switch (this.taskStatus) {
       case 0:
-        this.createTime = util.dateFormat(new Date())
+        this.createTime = util.dateFormat(new Date());
+        break;
+      case 1:
+        this.createTime = util.dateFormat(new Date());
         break;
       case 2:
-        this.createTime = util.dateFormat(new Date(this.task.createdAt))
-        this.remindTime = util.dateFormat(new Date(this.task.remindTime))
+        this.createTime = util.dateFormat(new Date(this.task.createdAt));
+        this.remindTime = util.dateFormat(new Date(this.task.remindTime));
       default:
         break;
     }

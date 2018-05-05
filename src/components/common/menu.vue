@@ -9,13 +9,13 @@
             <div class="menu-list">
                 <ul>
                     <li v-for="item in menu" :key="item.value" @click="hideMenu">
-                        <router-link class="first-menu" :to="{ path: item.routerName }">
+                        <router-link class="first-menu" :to="{ name: item.routerName, query: { selected: 1} }">
                             <img class="icon" :src="item.imgUrl"></img>
                             <span>{{ item.title }}</span>
                         </router-link>
                         <ul v-if="item.children">
                             <li class="second-menu" v-for="child in item.children" :key="child.value">
-                                <router-link to="#">
+                                <router-link :to="{ name: item.routerName, query: { selected: child.selected} }">
                                     {{ child.title }}
                                 </router-link>
                             </li>
@@ -41,7 +41,7 @@ export default {
                 {
                     title: '备忘录管理',
                     imgUrl: '../../../static/icon/icon_task.png',
-                    routerName: '/overview/home',
+                    routerName: 'overview_home',
                     value: 0,
                     children: [
                         {
@@ -65,37 +65,41 @@ export default {
                 {
                     title: '相册管理',
                     imgUrl: '../../../static/icon/icon_albert.png',
-                    routerName: '/overview/albertManage',
+                    routerName: 'albert_manage',
                     value: 1,
                     children: [
                         {
                             title: '普通',
-                            value: 0
+                            value: 0,
+                            selected: 1
                         },
                         {
                             title: '多人',
-                            value: 1
+                            value: 1,
+                            selected: 2
                         },
                         {
                             title: '旅游',
-                            value: 2
+                            value: 2,
+                            selected: 3
                         },
                         {
                             title: '亲子',
-                            value: 3
+                            value: 3,
+                            selected: 4
                         }
                     ]
                 },
                 {
                     title: '约会管理',
                     imgUrl: '../../../static/icon/icon_dating.png',
-                    routerName: '/overview/scheduleManage',
+                    routerName: 'schedule_manage',
                     value: 2
                 },
                 {
                     title: '计算器',
                     imgUrl: '../../../static/icon/icon_cal.png',
-                    routerName: '/overview/cal',
+                    routerName: 'overview_cal',
                     value: 3
                 },
                 {

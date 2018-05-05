@@ -95,9 +95,6 @@ export default {
         })
     },
     search() {
-        // axios.get('/task/?title=' + this.searchKey).then(res => {
-        //     console.log(res.data);
-        // })
         this.filterList = []
         this.todoList.map(item => {
             if (item.title.indexOf(this.searchKey) !== -1) {

@@ -62,6 +62,16 @@ export default {
     create() {
         this.updateList
     },
+    mounted() {
+        console.log(this.$route.query)
+        this.selected = this.$route.query.selected
+    },
+    watch: {
+        '$route'(to, form) {
+            console.log(this.$route.query)
+            this.selected = this.$route.query.selected
+        }
+    },
     methods: {
         ...mapActions([
             'getAlbertList'

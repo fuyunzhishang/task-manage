@@ -20,7 +20,8 @@ const store = new Vuex.Store({
         // 相册状态
         albertStatus: 0,
         imageList: [],
-        userInfo: []
+        userInfo: [],
+        selected: 1
     },
     mutations: {
         updateTask(state, task) {
@@ -46,6 +47,9 @@ const store = new Vuex.Store({
         },
         controlMenuShow(state, isShow) {
             state.isShowMenu = isShow;
+        },
+        setSelectedStatus(state, selected) {
+            state.selected = selected;
         }
     },
     actions: {
