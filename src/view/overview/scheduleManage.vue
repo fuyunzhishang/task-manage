@@ -55,7 +55,6 @@ export default {
         getList() {
             axios.get("/dateManage").then(res => {
                 this.scheduleList = res.data;
-                this.taskRemindChecked(this.scheduleList);
             });
         },
         deleteSchedule(scheId) {
