@@ -46,7 +46,7 @@
     <el-form class="register-from" v-show="showRegister" label-position="right" :model="regData">
       <h3 class="title">注册</h3>
       <el-form-item>
-        <el-input placeholder="请输入手机号" v-model="regData.username"></el-input>
+        <el-input placeholder="请输入手机号(必填)" v-model="regData.username"></el-input>
       </el-form-item>
       <el-form-item>
         <el-input placeholder="请输入密码" v-model="regData.psw"></el-input>
