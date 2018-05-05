@@ -55,6 +55,9 @@ const store = new Vuex.Store({
         },
         updateLoginStatus(state, status) {
             state.loginStatus = status
+        },
+        updateUserInfo(state, info) {
+            state.userInfo = info
         }
     },
     actions: {

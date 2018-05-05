@@ -4,7 +4,7 @@
             <i class="footerbar-item-icon home"></i>
             <p class="footerbar-item-name">首页</p>
         </router-link>
-        <router-link :class="{ active: routerName === 'overview_cal' }" :to="loginStatus === 1 ? { name: 'overview_cal', params: {} } : {name: 'error'}" class="footerbar-item">
+        <router-link :class="{ active: routerName === 'overview_cal' }" :to="{ name: 'overview_cal'}" class="footerbar-item">
             <i class="footerbar-item-icon cal"></i>
             <p class="footerbar-item-name">计算器</p>
         </router-link>
@@ -25,10 +25,7 @@ export default {
         ...mapState([
             'loginStatus'
         ])
-    },
-    mounted: function() {
-        // console.log(this.$route.name);
-    },
+    }
     
 }
 </script>
@@ -48,9 +45,7 @@ export default {
     .footerbar-item {
         flex: 1;
         text-align: center;
-        /* height: 1.56rem; */
         font-size: 0.31rem;
-        /* color: #4ea6ee; */
         color: #999;
         text-decoration: none;
         display: flex;

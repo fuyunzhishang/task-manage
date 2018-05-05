@@ -30,6 +30,7 @@ export default {
   },
   watch: {
     userInfo(val) {
+      debugger
       this.userInfo.birthDate = util.dateFormat(new Date(val.birthDate));
     }
   },
