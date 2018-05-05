@@ -30,6 +30,7 @@
 import axios from "axios";
 import eventBus from "../../eventBus";
 import { mapState, mapMutations, mapActions } from "vuex";
+import moment,{ months } from 'moment'
 
 export default {
     data() {
@@ -54,6 +55,7 @@ export default {
         getList() {
             axios.get("/dateManage").then(res => {
                 this.scheduleList = res.data;
+                this.taskRemindChecked(this.scheduleList);
             });
         },
         deleteSchedule(scheId) {

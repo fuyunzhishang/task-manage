@@ -60,6 +60,7 @@
 <script type="text/javascript">
 import { mapState, mapMutations, mapActions } from "vuex";
 import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -82,9 +83,21 @@ export default {
       }
     }
   },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      let status = localStorage.getItem('loginStatus')
+      vm.updateLoginStatus(status)
+      if (status == 1) {
+        vm.updateLoginStatus(1)
+        let id = localStorage.getItem('userId')
+        vm.getUserInfo(id)
+      }
+    })
+  },
   methods: {
     ...mapActions([
-      'getUser'
+      'getUser',
+      'getUserInfo'
     ]),
     ...mapMutations([
       'updateLoginStatus',
@@ -96,6 +109,8 @@ export default {
           if (res.data[0].password == this.loginData.psw) {
             this.updateLoginStatus(1)
             this.updateUserInfo(res.data[0])
+            localStorage.setItem('userId', res.data[0].id)
+            localStorage.setItem('loginStatus', 1)
           } else {
             this.updateLoginStatus(2)
             this.showError()
