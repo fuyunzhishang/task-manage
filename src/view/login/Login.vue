@@ -68,7 +68,7 @@
         <el-date-picker v-model="regData.birthDate" type="date" placeholder="请选择生日"> </el-date-picker>
       </el-form-item>
       <el-form-item>
-        <el-button class="register-btn" size="medium" @click="" type="primary">注册</el-button>
+        <el-button class="register-btn" size="medium" @click="register" type="primary">注册</el-button>
       </el-form-item>
       <el-form-item>
         <div class="to-login">已有账号？马上<span @click="goToLogin">登录</span></div>
@@ -115,6 +115,9 @@ export default {
         }
       })
       this.getUser(this.loginData)
+    },
+    register() {
+      
     },
     goToLogin() {
       this.showLogin = true;
