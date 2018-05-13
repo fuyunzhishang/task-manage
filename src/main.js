@@ -13,7 +13,7 @@ import store from './store/index.js'
 import { install } from 'vuex'
 // install(store)
 
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWMwZWNiZjVhMzQwYTI2MDQyYjk3NmMiLCJpYXQiOjE1MjM1MjA2NjgsImV4cCI6MTUyNjExMjY2OH0.ORBkNRKFvhzKEs-QtVwrmZzqf03wZcTd88OKet0SUFw'
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YWMwZWNiZjVhMzQwYTI2MDQyYjk3NmMiLCJpYXQiOjE1MjYxODE5NDksImV4cCI6MTUyODc3Mzk0OX0.4yTyLN_LALRK-5DonXcwSJ_G7hBGsnWbY6xNtfcBT7g'
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 axios.defaults.baseURL = 'http://localhost:1337'
 
