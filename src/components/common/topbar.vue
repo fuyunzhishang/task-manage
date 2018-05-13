@@ -84,12 +84,17 @@ export default {
         }
     },
     computed: {
-        ...mapState(['isShowMenu'])
+        ...mapState(['isShowMenu', 'loginStatus'])
     },
     methods: {
         ...mapMutations(['controlMenuShow']),
         showMenu() {
-            this.controlMenuShow(true);
+            if (this.loginStatus === "0") {
+                this.$router.push({ name: 'error' });
+                this.controlMenuShow(false);
+            } else {
+                this.controlMenuShow(true);
+            }
         }
     },
     components: {

@@ -11,7 +11,7 @@
     <mt-cell title="手机号" :value="userInfo.phone"></mt-cell>
     <mt-cell title="性别" v-show="userInfo.gender === 0">男</mt-cell>
     <mt-cell title="性别" v-show="userInfo.gender === 1">女</mt-cell>
-    <mt-cell title="生日" :value="userInfo.birthDate"></mt-cell>
+    <mt-cell title="生日" :value="birth"></mt-cell>
   </div>
 </template>
 
@@ -22,15 +22,18 @@ import util from '../../util/util';
 export default {
   data() {
     return {
-      avator: ''
+      avator: '',
+      birth: ''
     }
   },
   computed: {
     ...mapState(['userInfo'])
   },
+  mounted() {
+    this.birth = util.dateFormat(new Date(this.userInfo.birthDate));
+  },
   watch: {
     userInfo(val) {
-      debugger
       this.userInfo.birthDate = util.dateFormat(new Date(val.birthDate));
     }
   },

@@ -12,7 +12,7 @@
                     <div class="td-content" v-else>{{ item.event || '无' }}</div>
                     <div class="td-operation">
                         <el-button type="text" class="td-detail" @click.stop="getDetail(item._id, 2)">编辑</el-button>
-                        <el-button @click="deleteSchedule(item._id)" type="text" class="td-del">删除</el-button>
+                        <el-button @click.stop="deleteSchedule(item._id)" type="text" class="td-del">删除</el-button>
                     </div>
                 </li>
             </div>

@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-//import {index as main} from '../components/main/index.vue';
-import HelloWorld from '../components/HelloWorld.vue';
 import main from '../components/main/main.vue';
 import overview  from '../view/overview/overview.vue';
 import home from '../view/overview/home.vue';

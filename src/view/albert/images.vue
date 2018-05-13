@@ -1,5 +1,8 @@
 <template>
     <div class="images-container">
+        <div class="page-header">
+            <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
+        </div>
         <ul>
             <li v-for="item in imageList">
                 <img v-lazy="item.imgUrl">

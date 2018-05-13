@@ -12,7 +12,7 @@
         <mt-tab-container-item :id="1">
             <mt-cell v-for="(n, idx) in albertList.ordinary" :title="n.title" :key="idx">
                 <el-button type="text" class="albert-edit" @click="editAlbert(n)">编辑</el-button>
-                <el-button type="text" class="albert-del" @click="delAlbert">删除</el-button>
+                <el-button type="text" class="albert-del" @click.stop="delAlbert(idx)">删除</el-button>
             </mt-cell>
         </mt-tab-container-item>
         <mt-tab-container-item :id="2">
@@ -63,12 +63,10 @@ export default {
         this.updateList
     },
     mounted() {
-        console.log(this.$route.query)
         this.selected = this.$route.query.selected
     },
     watch: {
         '$route'(to, form) {
-            console.log(this.$route.query)
             this.selected = this.$route.query.selected
         }
     },
@@ -85,9 +83,11 @@ export default {
             this.updateImageList(albert.imageList)
             this.$router.push('/overview/images');
         },
-        delAlbert(albert) {},
+        delAlbert(id) {
+            
+        },
         showList() {
-            console.log('list ss');
+            // console.log('list ss');
         },
         addAlbert() {
             this.$router.push('/overview/addImage')
