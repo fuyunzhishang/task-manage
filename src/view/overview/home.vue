@@ -11,10 +11,10 @@
         <div class="todoList">
             <div v-if="filterList.length > 0">
                 <li v-for="(item, index) in filterList" :key="index" @click="getDetail(item.id, 1)">
-                    <div class="td-title" v-if="item.title && item.title.length > 3">{{ item.title.slice(0, 2) }}...</div>
-                    <div class="td-title" v-else>{{ item.title || '无' }}</div>
-                    <div class="td-content" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
-                    <div class="td-content" v-else>{{ item.content || '无' }}</div>
+                    <div class="td-title" :class="{ finished: item.isFinished }" v-if="item.title && item.title.length > 3">{{ item.title.slice(0, 2) }}...</div>
+                    <div class="td-title" :class="{ finished: item.isFinished }" v-else>{{ item.title || '无' }}</div>
+                    <div class="td-content" :class="{ finished: item.isFinished }" v-if="item.content && item.content.length > 8">{{ item.content.slice(0, 8) }}...</div>
+                    <div class="td-content" :class="{ finished: item.isFinished }" v-else>{{ item.content || '无' }}</div>
                     <div class="td-operation">
                         <el-button type="text" class="td-detail" @click.stop="getDetail(item.id, 2)">编辑</el-button>
                         <el-button @click.stop="deleteTask(item.id)" type="text" class="td-del">删除</el-button>
@@ -163,5 +163,9 @@ export default {
     line-height: 36px;
     border-radius: 18px;
     width: 99%;
+}
+.finished {
+    color: #cccccc;
+    text-decoration: line-through;
 }
 </style>

@@ -11,18 +11,27 @@
     <mt-tab-container v-model="selected">
         <mt-tab-container-item :id="1">
             <mt-cell v-for="(n, idx) in albertList.ordinary" :title="n.title" :key="idx">
-                <el-button type="text" class="albert-edit" @click="editAlbert(n)">编辑</el-button>
-                <el-button type="text" class="albert-del" @click.stop="delAlbert(idx)">删除</el-button>
+                <el-button type="text" class="albert-edit" @click="editAlbert(n)">查看详情</el-button>
+                <!-- <el-button type="text" class="albert-del" @click.stop="delAlbert(idx)">删除</el-button> -->
             </mt-cell>
         </mt-tab-container-item>
         <mt-tab-container-item :id="2">
-            <mt-cell v-for="(n, idx) in albertList.multi" :title="n.title" :key="idx" />
+            <mt-cell v-for="(n, idx) in albertList.multi" :title="n.title" :key="idx">
+                <el-button type="text" class="albert-edit" @click="editAlbert(n)">查看详情</el-button>
+                <!-- <el-button type="text" class="albert-del" @click.stop="delAlbert(idx)">删除</el-button> -->
+            </mt-cell>
         </mt-tab-container-item>
         <mt-tab-container-item :id="3">
-            <mt-cell v-for="(n, idx) in albertList.tourism" :title="n.title" :key="idx" />
+            <mt-cell v-for="(n, idx) in albertList.tourism" :title="n.title" :key="idx">
+                <el-button type="text" class="albert-edit" @click="editAlbert(n)">查看详情</el-button>
+                <!-- <el-button type="text" class="albert-del" @click.stop="delAlbert(idx)">删除</el-button> -->
+            </mt-cell>
         </mt-tab-container-item>
         <mt-tab-container-item :id="4">
-            <mt-cell v-for="(n, idx) in albertList.family" :title="n.title" :key="idx" />
+            <mt-cell v-for="(n, idx) in albertList.family" :title="n.title" :key="idx">
+                <el-button type="text" class="albert-edit" @click="editAlbert(n)">查看详情</el-button>
+                <!-- <el-button type="text" class="albert-del" @click.stop="delAlbert(idx)">删除</el-button> -->
+            </mt-cell>
         </mt-tab-container-item>
     </mt-tab-container>
     <div @click="addAlbert" class="create-albert">
@@ -48,22 +57,25 @@ import util from '../../util/util'
 export default {
     data() {
         return {
-            selected: 1
         }
     },
     created() {
         this.getAlbertList()
     },
     computed: {
-        ...mapState([
-            'albertList'
-        ])
+        ...mapState(['albertList']),
+        selected: {
+            get() {
+                return this.$store.state.selected;
+            },
+            set(val) {
+                this.setSelectedStatus(val);
+                this.$router.push({ name: 'albert_manage', query: { selected: val}})
+            }
+        }
     },
     create() {
         this.updateList
-    },
-    mounted() {
-        this.selected = this.$route.query.selected
     },
     watch: {
         '$route'(to, form) {
@@ -76,7 +88,8 @@ export default {
         ]),
         ...mapMutations([
             'changeAlbertStatus',
-            'updateImageList'
+            'updateImageList',
+            'setSelectedStatus'
         ]),
         editAlbert(albert) {
             this.changeAlbertStatus(2);

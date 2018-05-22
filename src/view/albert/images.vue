@@ -1,7 +1,7 @@
 <template>
     <div class="images-container">
         <div class="page-header">
-            <el-button type="text" @click="$router.back()" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
+            <el-button type="text" @click="goBack" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
         </div>
         <ul>
             <li v-for="item in imageList">
@@ -21,12 +21,16 @@ export default {
     computed: {
         ...mapState([
             'imageList',
-            'albertStatus'
+            'albertStatus',
+            'selected'
         ])
     },
     methods:{
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
+        },
+        goBack() {
+            this.$router.push({ name: 'albert_manage', query: { selected: this.selected}})
         }
     }
 }

@@ -25,18 +25,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 |-- build                       // 构建相关 
 |-- config                      // 配置相关
 |-- node_modules                // 依赖
-|-- service                     // 服务端业务代码
-|   |-- api                     // 存放接口文件
-|   |-- db                      // 数据库相关
-|       |-- db.js               // 数据库配置
-|       |-- sqlMap.js           // sql映射语句，操作数据库
-|   |-- app.js                  // 服务端入口
 |-- src                         // 前台源代码
 |   |-- assets                  // 静态资源
 |   |-- components              // 组件
 |   |-- router                  // 路由设置
 |   |-- style                   // 样式
-|   |-- views                   // 视图文件
+|   |-- util                    // 公共 JS 文件存放处
+|   |-- view                    // 视图文件
+|   |   |-- albert              // 相册管理相关
+|   |   |-- center              // 个人中心
+|   |   |-- login               // 登录
+|   |   |-- overview            // 首页及各模块主要页面
 |   |-- App.vue                 // 入口页面
 │   ├── main.js                 // 入口 加载组件 初始化等
 ├── static                      // 第三方不打包资源

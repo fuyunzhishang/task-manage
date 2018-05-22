@@ -30,7 +30,7 @@ export default {
     ...mapState(['userInfo'])
   },
   mounted() {
-    this.birth = util.dateFormat(new Date(this.userInfo.birthDate));
+    this.birth = util.dateFormat(new Date(this.userInfo.birthDate)).slice(0, 10);
   },
   watch: {
     userInfo(val) {

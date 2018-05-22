@@ -6,9 +6,10 @@
     </div>
     <mt-field label="创建时间" v-model="createTime"></mt-field>
     <mt-field label="标题" placeholder="请输入任务标题" v-model="task.title"></mt-field>
-    <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="remindTime"></mt-field>
-    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="task.remindTime"></mt-datetime-picker>
+    <!-- <mt-field label="提醒日期" placeholder="选择创建日期" @click.native="openPicker" v-model="remindTime"></mt-field>
+    <mt-datetime-picker ref="picker" type="datetime"  @confirm="handleConfirm" v-model="task.remindTime"></mt-datetime-picker> -->
     <mt-field label="任务内容" class="content" placeholder="请输入详情" type="textarea" rows="4" v-model="task.content"></mt-field>
+    <mt-field label="是否完成"><mt-switch v-model="task.isFinished"></mt-switch></mt-field>
   </div>
 </template>
 

@@ -1,5 +1,8 @@
 <template>
 <div class="add-image-container">
+    <div class="page-header">
+        <el-button type="text" @click="goBack" class="el-icon-d-arrow-left"><span class="goBack">返回</span></el-button>
+    </div>
     <mt-field label="标题" placeholder="请输入标题" v-model="title"></mt-field>
     <el-upload class="avatar-uploader" action="http://localhost:1337/upload" :headers="reqHeader" :show-file-list="false" :on-success="handleAvatarSuccess">
         <img v-if="imageUrl" :src="imageUrl" class="avatar">
@@ -11,6 +14,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState, mapMutations } from 'vuex';
 export default {
     data() {
         return {
@@ -22,7 +26,11 @@ export default {
             title: ''
         }
     },
+    computed: {
+        ...mapState(['selected'])
+    },
     methods: {
+        ...mapMutations(['setSelectedStatus']),
         handleAvatarSuccess(res, file) {
             this.imageUrl = URL.createObjectURL(file.raw);
         },
@@ -41,6 +49,10 @@ export default {
                 .then(response => {
                     console.log(response.data);
                 })
+        },
+        goBack() {
+            this.setSelectedStatus(1);
+            this.$router.push({ name: 'albert_manage', query: { selected: 1}})
         }
     }
 }
